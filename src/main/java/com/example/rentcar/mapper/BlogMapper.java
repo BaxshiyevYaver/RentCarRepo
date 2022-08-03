@@ -11,7 +11,9 @@ import org.mapstruct.factory.Mappers;
 public interface BlogMapper {
     BlogMapper INSTANCE = Mappers.getMapper(BlogMapper.class);
 
-    BlogDto mapPersonEntityToDto(BlogEntity blogEntity);
+    BlogDto mapBlogEntityToDto(BlogEntity blogEntity);
 
-    BlogEntity mapPersonDtoToEntity(BlogEntity blogEntity);
+    BlogEntity mapBlogDtoToEntity(BlogEntity blogEntity);
 }
+
+

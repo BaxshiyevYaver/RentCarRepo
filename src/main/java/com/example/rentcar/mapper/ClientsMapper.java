@@ -11,6 +11,6 @@ import org.mapstruct.factory.Mappers;
 public interface ClientsMapper {
     ClientsMapper INSTANCE = Mappers.getMapper(ClientsMapper.class);
 
-    ClientsDto mapPersonEntityToDto(ClientsEntity clientsEntity);
-    ClientsEntity mapPersonDtoToEntity(ClientsDto clientsDto);
+    ClientsDto mapClientsMapperEntityToDto(ClientsEntity clientsEntity);
+    ClientsEntity mapClientsMapperDtoToEntity(ClientsDto clientsDto);
 }

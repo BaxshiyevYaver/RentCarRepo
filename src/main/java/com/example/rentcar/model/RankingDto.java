@@ -5,15 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarCommentsDto {
-    private Integer id;
-    private String name;
-    private String text;
-    private String image;
-    private Date date;
+public class RankingDto {
+    private Integer yearExperienced;
+    private Integer totalBranches;
+    private Integer totalCars;
+    private Integer happyCustomers;
 }

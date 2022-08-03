@@ -9,10 +9,9 @@ import javax.persistence.Column;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentsDto {
+public class InformationDto {
     private Integer id;
-    private String name;
+    private String address;
+    private String phone;
     private String email;
-    private String message;
-
 }

@@ -5,13 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 
-@Entity(name = "comments")
-@Table(name = "comments")
+@Entity(name = "blogComments")
+@Table(name = "blogComments")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentsEntity {
+public class BlogCommentsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,4 +24,8 @@ public class CommentsEntity {
     private String email;
     @Column(name = "message")
     private String message;
+//    @Column(name = "date")
+//    private Date date;
+//    @Column(name = "time")
+//    private Time time;
 }

@@ -5,35 +5,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
 
-@Entity(name = "blog")
-@Table(name = "blog")
+@Entity(name = "about")
+@Table(name = "about")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BlogEntity {
+public class AboutEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "article")
-    private String article;
-
+    @Column(name = "name")
+    private String name;
     @Column(name = "title")
     private String title;
-
     @Column(name = "text")
     private String text;
-
-    @Column(name = "date")
-    private Date date;
-
-    @Column(name = "author")
-    private String author;
-
     @Column(name = "image")
     private String image;
-
 
 }

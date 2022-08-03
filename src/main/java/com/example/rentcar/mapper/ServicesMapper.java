@@ -11,6 +11,6 @@ import org.mapstruct.factory.Mappers;
 public interface ServicesMapper {
     ServicesMapper INSTANCE = Mappers.getMapper(ServicesMapper.class);
 
-    ServicesDto mapPersonEntityToDto(ServicesEntity servicesEntity);
-    ServicesEntity mapPersonDtoToEntity(ServicesDto servicesDto);
+    ServicesDto mapServicesEntityToDto(ServicesEntity servicesEntity);
+    ServicesEntity mapServicesDtoToEntity(ServicesDto servicesDto);
 }

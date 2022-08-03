@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 public interface ContactUsMapper {
     ContactUsMapper INSTANCE = Mappers.getMapper(ContactUsMapper.class);
 
-    ContactUsDto mapPersonEntityToDto(ContactUsEntity contactUsEntity);
-    ContactUsEntity mapPersonDtoToEntity(ContactUsDto contactUsDto);
+    ContactUsDto mapContactUsEntityToDto(ContactUsEntity contactUsEntity);
+    ContactUsEntity mapContactUsDtoToEntity(ContactUsDto contactUsDto);
 
 }

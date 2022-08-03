@@ -24,7 +24,7 @@ public class CarCommentsEntity {
     @Column(name = "image")
     private String image;
     @Column(name = "date")
-    private Date text;
+    private Date date;
 
 
 

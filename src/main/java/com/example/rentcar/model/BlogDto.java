@@ -1,11 +1,11 @@
+
 package com.example.rentcar.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
@@ -13,9 +13,12 @@ import java.util.Date;
 public class BlogDto {
 
     private Integer id;
+    private String article;
     private String title;
     private String text;
     private Date date;
     private String author;
     private String image;
 }
+
+

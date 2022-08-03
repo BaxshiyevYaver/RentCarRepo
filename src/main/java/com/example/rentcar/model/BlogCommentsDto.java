@@ -4,16 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarCommentsDto {
+public class BlogCommentsDto {
     private Integer id;
     private String name;
-    private String text;
-    private String image;
-    private Date date;
+    private String email;
+    private String message;
+//    private Date date;
+//    private Time time;
+
 }
