@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
-@Entity(name = "carComments")
-@Table(name = "carComments")
+@Entity(name = "car_comments")
+@Table(name = "car_comments")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,14 +21,10 @@ public class CarCommentsEntity {
     private String name;
     @Column(name = "text")
     private String text;
-    @Column(name = "image")
-    private String image;
     @Column(name = "date")
     private Date date;
-
-
-
-
+    @Column(name = "car_id")
+    private Integer car_id;
 
 
 }

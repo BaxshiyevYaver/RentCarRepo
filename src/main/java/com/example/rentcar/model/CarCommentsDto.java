@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
@@ -14,6 +14,7 @@ public class CarCommentsDto {
     private Integer id;
     private String name;
     private String text;
-    private String image;
     private Date date;
+    private Integer car_id;
+
 }

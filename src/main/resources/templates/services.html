@@ -35,24 +35,19 @@
                 <tr th:each="services : ${services}">
                     <div class="col-md-3">
                         <div class="services services-2 w-100 text-center">
-
-
                             <div class="icon d-flex align-items-center justify-content-center"><span
                                     class="flaticon-route"></span></div>
                             <div class="text w-100">
-                                <h3 class="heading mb-2">
-                                    <td th:text="${services.name}"></td>
-                                </h3>
-                                <p>  <td th:text="${services.about}"></td></p>
+                                <h3 class="heading mb-2" th:text="${services.name}"></h3>
+                                <p th:text="${services.about}"></p>
                             </div>
                         </div>
                     </div>
+                </tr>
             </div>
-            </tr>
+
         </div>
     </section>
-
-
 </div>
 </body>
 </html>

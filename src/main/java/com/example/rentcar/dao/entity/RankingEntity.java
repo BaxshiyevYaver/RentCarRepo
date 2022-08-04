@@ -16,12 +16,12 @@ public class RankingEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "yearExperienced")
-    private Integer yearExperienced;
-    @Column(name = "totalBranches")
-    private Integer totalBranches;
-    @Column(name = "totalCars")
-    private Integer totalCars;
-    @Column(name = "happyCustomers")
-    private Integer happyCustomers;
+    @Column(name = "year_experienced")
+    private Integer year_experienced;
+    @Column(name = "total_branches")
+    private Integer total_branches;
+    @Column(name = "total_cars")
+    private Integer total_cars;
+    @Column(name = "happy_customers")
+    private Integer happy_customers;
 }

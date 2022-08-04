@@ -10,8 +10,9 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RankingDto {
-    private Integer yearExperienced;
-    private Integer totalBranches;
-    private Integer totalCars;
-    private Integer happyCustomers;
+    private Integer id;
+    private Integer year_experienced;
+    private Integer total_branches;
+    private Integer total_cars;
+    private Integer happy_customers;
 }
