@@ -29,7 +29,7 @@
                 <div class="col-md-12 text-center d-flex ftco-animate">
                     <div class="blog-entry justify-content-end mb-md-5">
                         <tr th:each="blogs : ${blogs}">
-                            <a href="/rentCar/blog-single">
+                            <a th:href="${'http://localhost:8086/rentCar/blog-single/'+ blogs.id}">
                                 <img class="img-fluid w-100 pb-1"  th:src="${blogs.image}" alt="image">
                             </a>
                             <div class="text px-md-5 pt-4">
@@ -51,7 +51,7 @@
                                 <p>
                                 <td th:text="${blogs.text}"></td>
                                 </p>
-                                <p><a href="blog-single.html" class="btn btn-primary">Continue <span
+                                <p><a th:href="${'http://localhost:8086/rentCar/blog-single/'+ blogs.id}" class="btn btn-primary">Continue <span
                                         class="icon-long-arrow-right"></span></a></p>
                             </div>
                         </tr>
@@ -76,7 +76,6 @@
             </div>
         </div>
     </section>
-
 
 </div>
 </body>

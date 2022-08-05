@@ -3,7 +3,6 @@ package com.example.rentcar.service;
 import com.example.rentcar.dao.entity.BlogEntity;
 import com.example.rentcar.dao.entity.RankingEntity;
 import com.example.rentcar.dao.repository.RankingRepository;
-import com.example.rentcar.mapper.BlogMapper;
 import com.example.rentcar.mapper.RankingMapper;
 import com.example.rentcar.model.BlogDto;
 import com.example.rentcar.model.RankingDto;

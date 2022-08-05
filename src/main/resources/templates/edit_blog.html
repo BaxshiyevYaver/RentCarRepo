@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/default">
+
+<body>
+
+<div layout:fragment="content">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/img/bg_1.jpg');"
+             data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <h1 class="mb-3 bread">Edit Blog</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h1 class="mb-3 bread"></h1>
+        <br>
+        <form th:action="@{/rentCar/saveBlog}" th:each="blog : ${blog}" method="post" class="bg-light p-5 contact-form">
+            <div class="form-group">
+                <input type="hidden" th:value="${blog.image}" class="form-control" id="image" name="image">
+                <input type="hidden" th:value="${blog.id}" class="form-control" id="id" name="id">
+
+                <h4>Blog Name:</h4>
+                <input type="text" th:value="${blog.title}" name="title" id="title" class="form-control"
+                       placeholder="Blog Name">
+            </div>
+            <div class="form-group">
+                <h4>Blog Title:</h4>
+                <input type="text" name="text" th:value="${blog.text}" id="text" class="form-control"
+                       placeholder="Blog Title">
+            </div>
+            <div class="form-group">
+                <h4>Blog Author:</h4>
+                <input type="text" name="author" th:value="${blog.author}" id="author" class="form-control"
+                       placeholder="Blog Author">
+            </div>
+            <div class="form-group">
+                <h4>Blog Text:</h4>
+                <textarea name="article" th:text="${blog.article}" id="article" cols="30" rows="7"
+                          class="form-control"
+                          placeholder="Write Blog text"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" value="Edit Blog"
+                       class="btn btn-primary py-3 px-5">
+
+            </div>
+        </form>
+        <div class="bg-light p-5 contact-form">
+            <a th:href="${'http://localhost:8086/rentCar/deleteBlog/' + blog.id}">
+                <button class="btn btn-danger py-3 px-5">Delete</button>
+            </a>
+        </div>
+
+    </section>
+
+
+</div>
+</body>
+</html>

@@ -1,12 +1,9 @@
 package com.example.rentcar.service;
 
 import com.example.rentcar.dao.entity.ClientsEntity;
-import com.example.rentcar.dao.entity.InformationEntity;
 import com.example.rentcar.dao.repository.ClientsRepository;
 import com.example.rentcar.mapper.ClientsMapper;
-import com.example.rentcar.mapper.InformationMapper;
 import com.example.rentcar.model.ClientsDto;
-import com.example.rentcar.model.InformationDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

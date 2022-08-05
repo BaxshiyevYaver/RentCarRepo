@@ -13,5 +13,4 @@ public class ContactUsDto {
     private String email;
     private String subject;
     private String message;
-
 }

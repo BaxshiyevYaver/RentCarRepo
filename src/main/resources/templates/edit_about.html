@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/default">
+
+<body>
+
+<div layout:fragment="content">
+  <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/img/bg_1.jpg');"
+           data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+        <div class="col-md-9 ftco-animate pb-5">
+          <h1 class="mb-3 bread">Edit About</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section>
+    <h1 class="mb-3 bread"></h1>
+    <br>
+    <form th:action="@{/rentCar/saveAbout}" th:each="about : ${about}" method="post" class="bg-light p-5 contact-form">
+      <div class="form-group">
+        <input type="hidden" th:value="${about.image}" class="form-control" id="image" name="image">
+        <input type="hidden" th:value="${about.id}" class="form-control" id="id" name="id">
+
+        <h4>Name:</h4>
+        <input type="text" th:value="${about.name}" name="name" id="name" class="form-control"
+               placeholder="Name">
+      </div>
+      <div class="form-group">
+        <h4>Title:</h4>
+        <input type="text" name="title" th:value="${about.title}" id="title" class="form-control"
+               placeholder="Title">
+      </div>
+      <div class="form-group">
+        <h4>Text:</h4>
+        <textarea name="text" th:text="${about.text}" id="text" cols="30" rows="7"
+                  class="form-control"
+                  placeholder="Write text"></textarea>
+      </div>
+      <div class="form-group">
+        <input type="submit" name="submit" value="Edit Submit"
+               class="btn btn-primary py-3 px-5">
+
+      </div>
+    </form>
+  </section>
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

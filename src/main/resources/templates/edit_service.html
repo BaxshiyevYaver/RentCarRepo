@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/default">
+
+<body>
+
+<div layout:fragment="content">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/img/bg_1.jpg');"
+             data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <h1 class="mb-3 bread">Edit Service</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <br>
+        <div class="container">
+            <div class="col-md-8 block-9 mb-md-5">
+                <form th:action="@{/rentCar/saveService}" th:each="service : ${service}" method="post"
+                      class="bg-light p-5 contact-form">
+                    <div class="form-group">
+                        <input type="hidden" th:value="${service.id}" class="form-control" id="id" name="id">
+                        <h5>Service Name:</h5>
+                        <input type="text" th:value="${service.name}" name="name" id="name"
+                               class="form-control"
+                               placeholder="Service Name">
+                    </div>
+                    <div class="form-group">
+                        <h5>About Service:</h5>
+                        <textarea type="text" th:text="${service.about}" name="about" id="about" class="form-control"
+                                  cols="30" rows="7"  placeholder="About Service"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" value="Edit Service"
+                               class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+</body>
+</html>

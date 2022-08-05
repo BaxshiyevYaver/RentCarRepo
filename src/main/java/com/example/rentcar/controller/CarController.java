@@ -1,11 +1,11 @@
 package com.example.rentcar.controller;
 
-import com.example.rentcar.model.BlogCommentsDto;
 import com.example.rentcar.model.CarCommentsDto;
 import com.example.rentcar.model.CarsDto;
 import com.example.rentcar.model.InformationDto;
 import com.example.rentcar.service.CarCommentsService;
 import com.example.rentcar.service.CarsService;
+import com.example.rentcar.service.InformationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -25,12 +23,16 @@ import java.util.List;
 public class CarController {
     CarsService carsService;
     CarCommentsService carCommentsService;
+    InformationService informationService;
 
 
     @GetMapping("/car")
     public String getCar(Model model) {
         List<CarsDto> carsDtoList = carsService.getCarsList();
         model.addAttribute("cars", carsDtoList);
+
+        List<InformationDto> informationDtoList = informationService.getInformationList();
+        model.addAttribute("informations", informationDtoList);
         return "car";
     }
 
@@ -38,8 +40,12 @@ public class CarController {
     public String getCarSingle(Model model) {
         List<CarsDto> carsDtoList = carsService.getCarsList();
         model.addAttribute("cars", carsDtoList);
+
         List<CarCommentsDto> carCommentsDtoList = carCommentsService.getCarCommentsList();
         model.addAttribute("carComments", carCommentsDtoList);
+
+        List<InformationDto> informationDtoList = informationService.getInformationList();
+        model.addAttribute("informations", informationDtoList);
         return "car-single";
     }
 

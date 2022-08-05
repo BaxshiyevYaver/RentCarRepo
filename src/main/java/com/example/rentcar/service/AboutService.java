@@ -5,14 +5,15 @@ import com.example.rentcar.dao.entity.BlogEntity;
 import com.example.rentcar.dao.entity.ServicesEntity;
 import com.example.rentcar.dao.repository.AboutRepository;
 import com.example.rentcar.mapper.AboutMapper;
-import com.example.rentcar.mapper.BlogMapper;
 import com.example.rentcar.mapper.ServicesMapper;
 import com.example.rentcar.model.AboutDto;
 import com.example.rentcar.model.BlogDto;
 import com.example.rentcar.model.ServicesDto;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +32,20 @@ public class AboutService {
                 .collect(Collectors.toList());
 
         return aboutDtoList;
+
+    }
+
+    public AboutDto getAbout(Integer id) {
+        Optional<AboutEntity> optionalAboutEntity = aboutRepository.findById(id);
+        var aboutEntity = optionalAboutEntity.orElseGet(AboutEntity::new);
+        var aboutDto = AboutMapper.INSTANCE.mapAboutEntityToDto(aboutEntity);
+        return aboutDto;
+    }
+
+    @Transactional
+    public void saveAbout(AboutDto aboutDto) {
+
+        aboutRepository.save(AboutMapper.INSTANCE.mapAboutDtoToEntity(aboutDto));
 
     }
 }

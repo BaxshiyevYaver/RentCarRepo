@@ -57,7 +57,4 @@ public class CarsEntity {
     @Column(name = "description")
     private String description;
 
-
-
-
 }

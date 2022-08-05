@@ -27,7 +27,7 @@ public class BlogEntity {
     private String text;
 
     @Column(name = "date")
-    private Date date;
+    private String date;
 
     @Column(name = "author")
     private String author;

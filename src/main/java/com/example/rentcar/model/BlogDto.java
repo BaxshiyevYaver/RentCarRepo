@@ -16,7 +16,7 @@ public class BlogDto {
     private String article;
     private String title;
     private String text;
-    private Date date;
+    private String date;
     private String author;
     private String image;
 }

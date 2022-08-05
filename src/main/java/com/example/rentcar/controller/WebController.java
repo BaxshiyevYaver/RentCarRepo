@@ -22,6 +22,7 @@ public class WebController {
     ServicesService servicesService;
     BlogService blogService;
     CarsService carsService;
+    InformationService informationService;
 
 
 
@@ -45,6 +46,9 @@ public class WebController {
 
         List<BlogDto> blogDtoList = blogService.getBlogList();
         model.addAttribute("blogs", blogDtoList);
+
+        List<InformationDto> informationDtoList = informationService.getInformationList();
+        model.addAttribute("informations", informationDtoList);
         return "index";
     }
 

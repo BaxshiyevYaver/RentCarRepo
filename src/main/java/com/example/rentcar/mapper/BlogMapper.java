@@ -13,7 +13,7 @@ public interface BlogMapper {
 
     BlogDto mapBlogEntityToDto(BlogEntity blogEntity);
 
-    BlogEntity mapBlogDtoToEntity(BlogEntity blogEntity);
+    BlogEntity mapBlogDtoToEntity(BlogDto blogDto);
 }
 
 

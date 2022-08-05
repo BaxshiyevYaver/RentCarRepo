@@ -27,22 +27,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ftco-animate">
-                    <tr th:each="blogs : ${blogs}">
+                    <tr th:each="blog : ${blog}">
                         <h2 class="mb-3">
-                            <td th:text="${blogs.title}"></td>
+                            <td th:text="${blog.title}"></td>
                         </h2>
-                        <img class="img-fluid w-100 pb-1" th:src="${blogs.image}" alt="image">
+                        <img class="img-fluid w-100 pb-1" th:src="${blog.image}" alt="image">
 
                         <h2 class="mb-3 mt-5">
-                            <td th:text="${blogs.text}"></td>
+                            <td th:text="${blog.text}"></td>
                         </h2>
                         <p>
-                        <td th:text="${blogs.article}"></td>
+                        <td th:text="${blog.article}"></td>
                         </p>
 
-
                         <h4>
-                            <td th:text="${blogs.author}"></td>
+                            <td th:text="${blog.author}"></td>
                         </h4>
 
                     </tr>
@@ -67,7 +66,6 @@
                             </li>
                         </ul>
 
-
                         <div class="comment-form-wrap pt-5">
                             <h3 class="mb-5">Leave a comment</h3>
                             <form th:action="@{/rentCar/saveBlogComments}" method="post" class="p-5 bg-light">
@@ -77,11 +75,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email *</label>
-                                    <input type="email"  name="email"class="form-control" id="email">
+                                    <input type="email" name="email" class="form-control" id="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Message</label>
-                                    <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea name="message" id="message" cols="30" rows="10"
+                                              class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
@@ -105,8 +104,8 @@
 
                     <div class="sidebar-box ftco-animate">
                         <h3>Recent Blog</h3>
-                        <div class="block-21 mb-4 d-flex">
-                            <tr th:each="blogs : ${blogs}">
+                        <div class="block-21 mb-4 d-flex" th:each="blogs : ${blogs}">
+                            <tr >
                                 <a href="/rentCar/blog-single">
                                     <img class="blog-img mr-4" th:src="${blogs.image}" alt="image">
                                 </a>

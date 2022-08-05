@@ -1,11 +1,8 @@
 package com.example.rentcar.service;
 
-import com.example.rentcar.dao.entity.BlogCommentsEntity;
 import com.example.rentcar.dao.entity.CarCommentsEntity;
 import com.example.rentcar.dao.repository.CarCommentsRepository;
-import com.example.rentcar.mapper.BlogCommentsMapper;
 import com.example.rentcar.mapper.CarCommentsMapper;
-import com.example.rentcar.model.BlogCommentsDto;
 import com.example.rentcar.model.CarCommentsDto;
 import org.springframework.stereotype.Service;
 

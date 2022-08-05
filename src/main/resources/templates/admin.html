@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/default">
+
+<body>
+
+<div layout:fragment="content">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/img/bg_1.jpg');"
+             data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <h1 class="mb-3 bread">Admin</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section contact-section">
+        <div class="container">
+            <div class="row d-flex mb-5 contact-info">
+                <div class="col-md-4">
+                    <div class="row mb-5">
+
+                        <div class="col-md-12">
+                            <div class="border w-100 p-4 rounded mb-2 d-flex">
+                                <div class="icon mr-3">
+                                    <span class="icon-map-o"></span>
+                                </div>
+                                <p><span>Address:</span>
+                                    <tr th:each="informations : ${informations}">
+                                        <td th:text="${informations.address}"></td>
+                                        <a th:href="${'http://localhost:8086/rentCar/editInformation/'+ informations.id}">
+                                            <button class="btn btn-success">Edit</button>
+                                        </a>
+                                        <br>
+                                    </tr>
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="border w-100 p-4 rounded mb-2 d-flex">
+                                <div class="icon mr-3">
+                                    <span class="icon-mobile-phone"></span>
+                                </div>
+                                <p><span>Phone:</span>
+                                    <tr th:each="informations : ${informations}">
+                                        <td th:text="${informations.phone}">
+                                        </td>
+                                        <a th:href="${'http://localhost:8086/rentCar/editInformation/'+ informations.id}">
+                                            <button class="btn btn-success">Edit</button>
+                                        </a>
+                                        <br>
+                                    </tr>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="border w-100 p-4 rounded mb-2 d-flex">
+                                <div class="icon mr-3">
+                                    <span class="icon-envelope-o"></span>
+                                </div>
+                                <p><span>Email:</span>
+                                    <tr th:each="informations : ${informations}">
+                                        <td th:text="${informations.email}"></td>
+                                        <a th:href="${'http://localhost:8086/rentCar/editInformation/'+ informations.id}">
+                                            <button class="btn btn-success">Edit</button>
+                                        </a>
+                                        <br>
+                                    </tr>
+
+                                </p>
+                            </div>
+                            <a th:href="${'http://localhost:8086/rentCar/deleteInformation/'}">
+                                <button class=" btn btn-danger">Delete</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 block-9 mb-md-5">
+                    <form th:action="@{/rentCar/saveInformation}" method="post" class="bg-light p-5 contact-form">
+                        <div class="form-group">
+                            <input type="text" name="address" id="address" class="form-control"
+                                   placeholder="Your Address">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" value="Add Information"
+                                   class="btn btn-primary py-3 px-5">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h1 class="mb-3 bread">Contact Us Message</h1>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Subject</td>
+                    <td>Message</td>
+                    <td><a th:href="${'http://localhost:8086/rentCar/deleteAllContactUs/'}">
+                        <button class="btn btn-danger">Delete All Message</button>
+                    </a></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contacts : ${contacts}">
+                    <td th:text="${contacts.name}"></td>
+                    <td th:text="${contacts.email}"></td>
+                    <td th:text="${contacts.subject}"></td>
+                    <td th:text="${contacts.message}"></td>
+
+                    <td>
+                        <a th:href="${'http://localhost:8086/rentCar/deleteContactUs/' + contacts.id}">
+                            <button class="btn btn-danger">Delete</button>
+                        </a>
+                        <a th:href="${'https://mail.google.com/mail/u/1/#inbox?compose=new'}">
+                            <button class="btn btn-success">Reply
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+    <section class="ftco-section contact-section">
+        <div class="container">
+            <div class="row d-flex mb-5 contact-info">
+                <div class="col-md-5">
+                    <div class="row mb-5">
+
+
+                        <h1 class="mb-3 bread">All Blog</h1>
+                        <div class="block-21 mb-4 d-flex" th:each="blogs : ${blogs}">
+                            <tr>
+                                <a href="/rentCar/blog-single">
+                                    <img class="blog-img mr-4" th:src="${blogs.image}" alt="image">
+                                </a>
+                                <div class="text">
+                                    <h3 class="heading"><a href="#">
+                                        <td th:text="${blogs.text}"></td>
+                                    </a></h3>
+                                    <div class="meta">
+                                        <div><a href="#"><span class="icon-calendar"></span>
+                                            <td th:text="${blogs.date}"></td>
+                                        </a></div>
+                                        <div><a href="#"><span class="icon-person"></span>
+                                            <td th:text="${blogs.author}"></td>
+                                        </a></div>
+                                    </div>
+                                </div>
+                            </tr>
+
+                            <a th:href="${'http://localhost:8086/rentCar/deleteBlog/' + blogs.id}">
+                                <button class="btn btn-danger">Delete</button>
+                            </a>
+                            <a th:href="${'http://localhost:8086/rentCar/editBlog/'+ blogs.id}">
+                                <button class="btn btn-success">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <div class="col-md-7 block-9 mb-md-5">
+                    <h1 class="mb-3 bread">Blog Add</h1>
+                    <form th:action="@{/rentCar/saveBlog}" method="post" class="bg-light p-5 contact-form">
+                        <div class="form-group">
+                            <input type="text" name="title" id="title" class="form-control"
+                                   placeholder="Blog Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="text" id="text" class="form-control" placeholder="Blog Title">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="author" id="author" class="form-control" placeholder="Blog Author">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="article" id="article" cols="30" rows="7" class="form-control"
+                                      placeholder="Write Blog text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" value="Add Blog"
+                                   class="btn btn-primary py-3 px-5">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+                    <h2 class="mb-3">Services</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <tr th:each="services : ${services}">
+                    <div class="col-md-3">
+                        <div class="services services-2 w-100 text-center">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="flaticon-route"></span></div>
+                            <div class="text w-100">
+                                <h3 class="heading mb-2" th:text="${services.name}"></h3>
+                                <p th:text="${services.about}"></p>
+                            </div>
+                            <a th:href="${'http://localhost:8086/rentCar/deleteService/' + services.id}">
+                                <button class="btn btn-danger">Delete</button>
+                            </a>
+                            <a th:href="${'http://localhost:8086/rentCar/editService/'+ services.id}">
+                                <button class="btn btn-success">Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                </tr>
+            </div>
+        </div>
+
+        <div class="container">
+            <br>
+            <br>
+            <div class="col-md-10 block-9 mb-md-5">
+                <h2 class="mb-3">Add Services</h2>
+                <form th:action="@{/rentCar/saveService}" method="post"
+                      class="bg-light p-5 contact-form">
+                    <div class="form-group">
+                        <h5>Service Name:</h5>
+                        <input type="text" name="name" id="name"
+                               class="form-control"
+                               placeholder="Service Name">
+                    </div>
+                    <div class="form-group">
+                        <h5>About Service:</h5>
+                        <textarea type="text" name="about" id="about" class="form-control"
+                                  cols="30" rows="7" placeholder="About Service"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" value="Add Service"
+                               class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section ftco-about">
+        <div class="container">
+            <div class="row no-gutters" th:each="about : ${about}">
+
+                <img class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
+                     th:src="${about.image}" alt="image">
+                <div class="col-md-6 wrap-about ftco-animate">
+                    <div class="heading-section heading-section-white pl-md-5">
+                        <span class="subheading" th:text="${about.name}"></span>
+                        <h2 class="mb-4" th:text="${about.title}">
+                        </h2>
+                        <p th:text="${about.text}">
+
+                        </p>
+                        <p><a href="/rentCar/car/" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+                        <p><a th:href="${'http://localhost:8086/rentCar/editAbout/'+ about.id}" class="btn btn-primary py-3 px-4">Edit About Us</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+</body>
+</html>

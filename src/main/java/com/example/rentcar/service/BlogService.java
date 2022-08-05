@@ -7,6 +7,7 @@ import com.example.rentcar.model.BlogDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,5 +28,23 @@ public class BlogService {
         return blogDtoList;
 
     }
+
+    public BlogDto getBlog(Integer id) {
+        Optional<BlogEntity> optionalBlogEntity = blogRepository.findById(id);
+        var blogEntity = optionalBlogEntity.orElseGet(BlogEntity::new);
+        var blogDto = BlogMapper.INSTANCE.mapBlogEntityToDto(blogEntity);
+        return blogDto;
+    }
+
+    public void saveBlog(BlogDto blogDto) {
+        blogRepository.save(BlogMapper.INSTANCE.mapBlogDtoToEntity(blogDto));
+
+    }
+
+    public void deleteBlog(Integer id) {
+        blogRepository.deleteById(id);
+    }
+
+
 }
 
