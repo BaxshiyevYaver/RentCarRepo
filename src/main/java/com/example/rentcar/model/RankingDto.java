@@ -13,4 +13,6 @@ public class RankingDto {
     private Integer total_branches;
     private Integer total_cars;
     private Integer happy_customers;
+    private Integer start_year;
+
 }

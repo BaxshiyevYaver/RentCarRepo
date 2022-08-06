@@ -84,7 +84,7 @@ public class BlogController {
     }
 
     @GetMapping("/deleteBlog/{blogId}")
-    public String deleteBlog(@PathVariable("blogId") Integer blogId, Model model) {
+    public String deleteBlog(@PathVariable("blogId") Integer blogId) {
         blogService.deleteBlog(blogId);
 
         return "redirect:/rentCar/admin/";

@@ -30,4 +30,6 @@ public class CarsDto {
     private Boolean remote_central_locking;
     private Boolean climate_control;
     private String description;
+    private Integer year;
+
 }

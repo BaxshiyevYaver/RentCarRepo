@@ -1,22 +1,10 @@
 package com.example.rentcar.service;
 
 import com.example.rentcar.dao.entity.BlogCommentsEntity;
-import com.example.rentcar.dao.entity.BlogEntity;
 import com.example.rentcar.dao.repository.BlogCommentsRepository;
 import com.example.rentcar.mapper.BlogCommentsMapper;
-import com.example.rentcar.mapper.ContactUsMapper;
 import com.example.rentcar.model.BlogCommentsDto;
-import com.example.rentcar.model.BlogDto;
-import com.example.rentcar.model.ContactUsDto;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 

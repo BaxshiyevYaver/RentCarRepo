@@ -26,83 +26,61 @@
                 <div class="col-md-4">
                     <div class="row mb-5">
 
-                        <div class="col-md-12">
-                            <div class="border w-100 p-4 rounded mb-2 d-flex">
-                                <div class="icon mr-3">
-                                    <span class="icon-map-o"></span>
-                                </div>
-                                <p><span>Address:</span>
-                                    <tr th:each="informations : ${informations}">
-                                        <td th:text="${informations.address}"></td>
-                                        <a th:href="${'http://localhost:8086/rentCar/editInformation/'+ informations.id}">
-                                            <button class="btn btn-success">Edit</button>
-                                        </a>
-                                        <br>
-                                    </tr>
-                                </p>
-                            </div>
-                        </div>
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-dark">
+                            <tr>
+                                <td>Address</td>
+                                <td>Phone</td>
+                                <td>Email</td>
+                                <td><a th:href="${'http://localhost:8086/rentCar/deleteInformation/'}">
+                                    <button class="btn btn-danger">Delete All Information</button>
+                                </a></td>
+                            </tr>
+                            </thead>
+                            <tbody>
 
+                            <tr th:each="informations : ${informations}">
+                                <td th:text="${informations.address}"></td>
+                                <br>
+                                <td th:text="${informations.phone}"></td>
+                                <br>
+                                <td th:text="${informations.email}"></td>
+                                <br>
+                                <td>
+                                    <a th:href="${'http://localhost:8086/rentCar/editInformation/'+ informations.id}">
+                                        <button class="btn btn-success">Edit</button>
+                                    </a>
+                                </td>
+                                <br>
+                            </tr>
+                            </tbody>
+                        </table>
 
-                        <div class="col-md-12">
-                            <div class="border w-100 p-4 rounded mb-2 d-flex">
-                                <div class="icon mr-3">
-                                    <span class="icon-mobile-phone"></span>
-                                </div>
-                                <p><span>Phone:</span>
-                                    <tr th:each="informations : ${informations}">
-                                        <td th:text="${informations.phone}">
-                                        </td>
-                                        <a th:href="${'http://localhost:8086/rentCar/editInformation/'+ informations.id}">
-                                            <button class="btn btn-success">Edit</button>
-                                        </a>
-                                        <br>
-                                    </tr>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="border w-100 p-4 rounded mb-2 d-flex">
-                                <div class="icon mr-3">
-                                    <span class="icon-envelope-o"></span>
-                                </div>
-                                <p><span>Email:</span>
-                                    <tr th:each="informations : ${informations}">
-                                        <td th:text="${informations.email}"></td>
-                                        <a th:href="${'http://localhost:8086/rentCar/editInformation/'+ informations.id}">
-                                            <button class="btn btn-success">Edit</button>
-                                        </a>
-                                        <br>
-                                    </tr>
-
-                                </p>
-                            </div>
-                            <a th:href="${'http://localhost:8086/rentCar/deleteInformation/'}">
-                                <button class=" btn btn-danger">Delete</button>
-                            </a>
-                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-8 block-9 mb-md-5">
-                    <form th:action="@{/rentCar/saveInformation}" method="post" class="bg-light p-5 contact-form">
-                        <div class="form-group">
-                            <input type="text" name="address" id="address" class="form-control"
-                                   placeholder="Your Address">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" name="submit" value="Add Information"
-                                   class="btn btn-primary py-3 px-5">
-                        </div>
-                    </form>
 
-                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-8 block-9 mb-md-5">
+                <form th:action="@{/rentCar/saveInformation}" method="post" class="bg-light p-5 contact-form">
+                    <div class="form-group">
+                        <input type="text" name="address" id="address" class="form-control"
+                               placeholder="Your Address">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" value="Add Information"
+                               class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+
             </div>
         </div>
     </section>
@@ -286,7 +264,8 @@
 
                         </p>
                         <p><a href="/rentCar/car/" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
-                        <p><a th:href="${'http://localhost:8086/rentCar/editAbout/'+ about.id}" class="btn btn-primary py-3 px-4">Edit About Us</a></p>
+                        <p><a th:href="${'http://localhost:8086/rentCar/editAbout/'+ about.id}"
+                              class="btn btn-primary py-3 px-4">Edit About Us</a></p>
 
                     </div>
                 </div>
@@ -294,6 +273,201 @@
         </div>
     </section>
 
+
+    <section class="ftco-section testimony-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+                    <h2 class="mb-3">Happy Clients Edit</h2>
+                </div>
+            </div>
+
+            <div class="row ftco-animate">
+                <tr th:each="clients : ${clients}">
+                    <div class="col-md-4">
+                        <div class="item">
+                            <div class="testimony-wrap rounded text-center py-4 pb-5">
+                                <div class="user-img mb-2">
+                                    <img class="user-img mb-2" th:src="${clients.image}" alt="image">
+                                </div>
+                                <div class="text pt-4">
+                                    <p class="mb-4" th:text="${clients.about}"></p>
+                                    <p class="name" th:text="${clients.name}"></p>
+                                    <span class="position" th:text="${clients.work}"></span>
+                                </div>
+                                <a th:href="${'http://localhost:8086/rentCar/deleteClient/' + clients.id}">
+                                    <button class="btn btn-danger">Delete</button>
+                                </a>
+                                <a th:href="${'http://localhost:8086/rentCar/editClient/'+ clients.id}">
+                                    <button class="btn btn-success">Edit</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            </div>
+        </div>
+
+        <div class="container">
+            <br>
+            <br>
+            <div class="col-md-10 block-9 mb-md-5">
+                <h2 class="mb-3">Add Happy Client</h2>
+                <form th:action="@{/rentCar/saveClient}" method="post"
+                      class="bg-light p-5 contact-form">
+                    <div class="form-group">
+                        <h5>Client Name:</h5>
+                        <input type="text" name="name" id="nameClient"
+                               class="form-control"
+                               placeholder="Client Name">
+                    </div>
+                    <div class="form-group">
+                        <h5>Client Work:</h5>
+                        <input type="text" name="work" id="workClient"
+                               class="form-control"
+                               placeholder="Client Name">
+                    </div>
+                    <div class="form-group">
+                        <h5>Client About:</h5>
+                        <textarea type="text" name="about" id="aboutClient" class="form-control"
+                                  cols="30" rows="7" placeholder="About Client"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" value="Add Client"
+                               class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section ftco-cart">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ftco-animate">
+
+                    <table class="table">
+                        <thead class="thead-primary">
+                        <tr class="text-center">
+                            <th><a href="/rentCar/addCar/">
+                                <button class="btn btn-primary">Add New Car</button>
+                            </a></th>
+                            <th class="bg-primary heading">Information Car</th>
+                            <th class="bg-dark heading">Edit Cars</th>
+                            <th class="bg-black heading">Delete Cars</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="" th:each="cars : ${cars}">
+                            <td class="car-image">
+                                <div class="img"><img class="img-fluid w-100 pb-1" th:src="${cars.image}" alt="image">
+                                </div>
+                            </td>
+                            <td class="price"><span class="heading mb-0 pl-3" th:text="${cars.year} + ' '"></span><span
+                                    class="heading mb-0 pl-3" th:text="${cars.name}"></span>
+                                <div class="heading mb-0 pl-3" th:text="${cars.mileage} +' mileage'"></div>
+                                <div class="heading mb-0 pl-3" th:text="${cars.transmission}"></div>
+                                <div class="heading mb-0 pl-3" th:text="${cars.fuel}"></div>
+                            </td>
+
+                            <td class="price">
+                                <p class="btn-custom"><a
+                                        th:href="${'http://localhost:8086/rentCar/editCar/' + cars.id}">Edit</a></p>
+                                <div class="price-rate">
+                                    <h3>
+                                        Edit Car
+                                    </h3>
+                                </div>
+                            </td>
+
+                            <td class="price">
+                                <p class="btn-custom"><a
+                                        th:href="${'http://localhost:8086/rentCar/deleteCar/' + cars.id}">Delete</a></p>
+                                <div class="price-rate">
+                                    <h3>
+                                        Delete Car!
+                                    </h3>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-counter ftco-section img" id="section-counter">
+        <div class="overlay"></div>
+        <div class="container" th:each="rankings : ${rankings}">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text text-border d-flex align-items-center">
+                            <strong class="number" th:text="${rankings.year_experienced}"></strong>
+                            <span>Year <br>Experienced</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text text-border d-flex align-items-center">
+                            <strong class="number" th:text="${rankings.total_cars}"></strong>
+                            <span>Total <br>Cars</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text text-border d-flex align-items-center">
+                            <strong class="number" th:text="${rankings.happy_customers}">
+                            </strong>
+                            <span>Happy <br>Customers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text d-flex align-items-center">
+                            <strong class="number" th:text="${rankings.total_branches}"></strong>
+                            <span>Total <br>Branches</span>
+
+
+                        </div>
+
+
+                        <h4 class="mb-3 bread">Edit Total Branches</h4>
+                        <form th:action="@{/rentCar/saveRanking}" th:each="rankings : ${rankings}" method="post"
+                              class="bg-light p-5 contact-form">
+                            <div class="form-group">
+                                <input type="hidden" th:value="${rankings.id}" class="form-control" id="id" name="id">
+                                <input type="hidden" th:value="${rankings.year_experienced}" class="form-control"
+                                       id="year_experienced" name="year_experienced">
+                                <input type="hidden" th:value="${rankings.total_cars}" class="form-control"
+                                       id="total_cars" name="total_cars">
+                                <input type="hidden" th:value="${rankings.happy_customers}" class="form-control"
+                                       id="happy_customers" name="happy_customers">
+
+
+                                <input type="number" th:value="${rankings.total_branches}" name="total_branches"
+                                       id="total_branches" class="form-control"
+                                       placeholder="Total Branches">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" value="Edit Total Branches"
+                                       class="btn btn-primary">
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </div>
 </body>

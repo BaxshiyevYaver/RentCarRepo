@@ -1,8 +1,6 @@
 package com.example.rentcar.controller;
 
-import com.example.rentcar.model.CarCommentsDto;
-import com.example.rentcar.model.CarsDto;
-import com.example.rentcar.model.InformationDto;
+import com.example.rentcar.model.*;
 import com.example.rentcar.service.CarCommentsService;
 import com.example.rentcar.service.CarsService;
 import com.example.rentcar.service.InformationService;
@@ -10,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,7 +26,7 @@ public class CarController {
 
 
     @GetMapping("/car")
-    public String getCar(Model model) {
+    public String redirectCar(Model model) {
         List<CarsDto> carsDtoList = carsService.getCarsList();
         model.addAttribute("cars", carsDtoList);
 
@@ -36,10 +35,11 @@ public class CarController {
         return "car";
     }
 
-    @GetMapping("/car-single")
-    public String getCarSingle(Model model) {
-        List<CarsDto> carsDtoList = carsService.getCarsList();
-        model.addAttribute("cars", carsDtoList);
+    @GetMapping("/car-single/{carId}")
+    public String redirectCarSingle(Model model, @PathVariable("carId") Integer carId) {
+
+        CarsDto carsDto = carsService.getCar(carId);
+        model.addAttribute("cars", carsDto);
 
         List<CarCommentsDto> carCommentsDtoList = carCommentsService.getCarCommentsList();
         model.addAttribute("carComments", carCommentsDtoList);
@@ -47,6 +47,11 @@ public class CarController {
         List<InformationDto> informationDtoList = informationService.getInformationList();
         model.addAttribute("informations", informationDtoList);
         return "car-single";
+    }
+
+    @GetMapping("/addCar")
+    public String redirectCarAdd(Model model) {
+        return "addCar";
     }
 
     @PostMapping("/saveCarComments")
@@ -57,6 +62,28 @@ public class CarController {
         carCommentsService.saveCarComments(carCommentsDto);
         return "redirect:/rentCar/car-single/";
 
+    }
+
+    @GetMapping("/deleteCar/{carId}")
+    public String deleteCar(@PathVariable("carId") Integer carId, Model model) {
+        carsService.deleteCar(carId);
+
+        return "redirect:/rentCar/admin/";
+    }
+
+    @GetMapping("/editCar/{carId}")
+    public String editCar(
+            @PathVariable("carId") Integer carId,
+            Model model) {
+        CarsDto carsDto = carsService.getCar(carId);
+        model.addAttribute("car", carsDto);
+        return "edit_car";
+    }
+
+    @PostMapping("/saveCar")
+    public String saveCar(CarsDto carsDto) {
+        carsService.saveCar(carsDto);
+        return "redirect:/rentCar/admin/";
     }
 
 }

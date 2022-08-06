@@ -33,10 +33,10 @@
     						<h2 class="mb-0"><a href="/rentCar/car-single/"> <td th:text="${cars.name}"></td></a></h2>
     						<div class="d-flex mb-3">
 	    						<span class="cat"><td th:text="${cars.mark}"></td></span>
-	    						<p class="price ml-auto"><td th:text="${cars.price_per_day}"></td> <span>/day</span></p>
+	    						<p class="price ml-auto"><td th:text="${cars.price_per_day} +' $'"></td> <span>/day</span></p>
     						</div>
     						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a>
-								<a href="/rentCar/car-single/" class="btn btn-secondary py-2 ml-1">Details</a></p>
+								<a th:href="${'http://localhost:8086/rentCar/car-single/'+ cars.id}" class="btn btn-secondary py-2 ml-1">Details</a></p>
     					</div>
     				</div>
     			</div>

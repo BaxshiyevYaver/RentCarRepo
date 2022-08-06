@@ -44,7 +44,11 @@
                                 <div class="img"><img class="img-fluid w-100 pb-1" th:src="${cars.image}" alt="image">
                                 </div>
                             </td>
-                            <td th:text="${cars.name}"></td>
+                            <td><span class="heading mb-0 pl-3"  th:text="${cars.year} + ' '"></span><span   class="heading mb-0 pl-3" th:text="${cars.name}"></span>
+                            <div class="heading mb-0 pl-3" th:text="${cars.mileage} +' mileage'"></div>
+                                <div  class="heading mb-0 pl-3" th:text="${cars.transmission}"></div>
+                                <div  class="heading mb-0 pl-3" th:text="${cars.fuel}"></div>
+                            </td>
 
                             <td class="price">
                                 <p class="btn-custom"><a href="#">Rent a car</a></p>

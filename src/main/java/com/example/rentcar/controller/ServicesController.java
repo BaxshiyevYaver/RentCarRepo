@@ -1,6 +1,5 @@
 package com.example.rentcar.controller;
 
-import com.example.rentcar.model.BlogDto;
 import com.example.rentcar.model.InformationDto;
 import com.example.rentcar.model.ServicesDto;
 import com.example.rentcar.service.InformationService;
@@ -34,7 +33,7 @@ public class ServicesController {
     }
 
     @GetMapping("/deleteService/{serviceId}")
-    public String deleteService(@PathVariable("serviceId") Integer serviceId, Model model) {
+    public String deleteService(@PathVariable("serviceId") Integer serviceId) {
         servicesService.deleteService(serviceId);
 
         return "redirect:/rentCar/admin/";

@@ -6,7 +6,9 @@ import com.example.rentcar.mapper.CarsMapper;
 import com.example.rentcar.model.CarsDto;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,4 +30,21 @@ public class CarsService {
 
     }
 
+    public void deleteCar(Integer id) {
+        carsRepository.deleteById(id);
+    }
+
+    public CarsDto getCar(Integer id) {
+        Optional<CarsEntity> optionalCarsEntity = carsRepository.findById(id);
+        var carsEntity = optionalCarsEntity.orElseGet(CarsEntity::new);
+        var carsDto = CarsMapper.INSTANCE.mapCarsMapperEntityToDto(carsEntity);
+        return carsDto;
+    }
+
+    @Transactional
+    public void saveCar(CarsDto carsDto) {
+
+        carsRepository.save(CarsMapper.INSTANCE.mapCarsMapperDtoToEntity(carsDto));
+
+    }
 }

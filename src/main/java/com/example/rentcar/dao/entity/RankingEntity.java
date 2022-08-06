@@ -24,4 +24,6 @@ public class RankingEntity {
     private Integer total_cars;
     @Column(name = "happy_customers")
     private Integer happy_customers;
+    @Column(name = "start_year")
+    private Integer start_year;
 }

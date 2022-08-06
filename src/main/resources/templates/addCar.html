@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/default">
+
+<body>
+
+<div layout:fragment="content">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/img/bg_1.jpg');"
+             data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <h1 class="mb-3 bread">Add New Car</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <br>
+        <br>
+        <div class="col-md-9 block-9 mb-md-5">
+            <h1 class="mb-3 bread">Car Add</h1>
+            <form th:action="@{/rentCar/saveCar}" method="post" class="bg-light p-5 contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" id="name" class="form-control"
+                           placeholder="Car Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="mark" id="mark" class="form-control" placeholder="Car Mark">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="transmission" id="transmission" class="form-control"
+                           placeholder="Car Transmission">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="fuel" id="fuel" class="form-control" placeholder="Car fuel">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="year" id="year" class="form-control" placeholder="Car Year">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="mileage" id="mileage" class="form-control" placeholder="Car Mileage">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="seats" id="seats" class="form-control" placeholder="Car Seats">
+                </div>
+                <div class="form-group">
+                    <input type="number" step="0.01" name="price_per_hour" id="price_per_hour" class="form-control"
+                           placeholder="Car Price Per Hour">
+                </div>
+                <div class="form-group">
+                    <input type="number" step="0.01" name="price_per_day" id="price_per_day" class="form-control"
+                           placeholder="Car Price Per Day">
+                </div>
+                <div class="form-group">
+                    <input type="number" step="0.01" name="price_per_month" id="price_per_month" class="form-control"
+                           placeholder="Car Price Per Month">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="airconditions" name="airconditions">
+                    <label for="airconditions">Airconditions</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="child_seat" name="child_seat">
+                    <label for="child_seat">Child Seat</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="gps" name="gps">
+                    <label for="gps">gps</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="seat_belt" name="seat_belt">
+                    <label for="seat_belt">Seat Belt</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="bluetooth" name="bluetooth">
+                    <label for="bluetooth">Bluetooth</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="onboard_computer" name="onboard_computer">
+                    <label for="onboard_computer">Onboard Computer</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="remote_central_locking" name="remote_central_locking">
+                    <label for="remote_central_locking">Remote Central Locking</label><br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="climate_control" name="climate_control">
+                    <label for="climate_control">Climate Control</label><br>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="audio_input" name="audio_input">
+                    <label for="audio_input">Audio Input</label><br>
+                </div>
+                <div class="form-group">
+                            <textarea name="description" id="description" cols="30" rows="7" class="form-control"
+                                      placeholder="Write Car Description"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" value="Add Car"
+                           class="btn btn-primary py-3 px-5">
+                    <input type="reset" class="btn btn-danger py-3 px-5">
+                </div>
+            </form>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

@@ -19,7 +19,9 @@ public class AdminController {
     BlogService blogService;
     ServicesService servicesService;
     AboutService aboutService;
-
+    ClientsService clientsService;
+    CarsService carsService;
+    RankingService rankingService;
 
 
     @GetMapping("/admin")
@@ -39,6 +41,14 @@ public class AdminController {
         List<AboutDto> aboutDtoList = aboutService.getAboutList();
         model.addAttribute("about", aboutDtoList);
 
+        List<ClientsDto> clientsDtoList = clientsService.getClientsList();
+        model.addAttribute("clients", clientsDtoList);
+
+        List<CarsDto> carsDtoList = carsService.getCarsList();
+        model.addAttribute("cars", carsDtoList);
+
+        List<RankingDto> rankingDtoList = rankingService.getRankingList();
+        model.addAttribute("rankings", rankingDtoList);
         return "admin";
     }
 

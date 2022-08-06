@@ -56,5 +56,6 @@ public class CarsEntity {
     private Boolean climate_control;
     @Column(name = "description")
     private String description;
-
+    @Column(name = "year")
+    private Integer year;
 }

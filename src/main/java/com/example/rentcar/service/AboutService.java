@@ -1,14 +1,10 @@
 package com.example.rentcar.service;
 
 import com.example.rentcar.dao.entity.AboutEntity;
-import com.example.rentcar.dao.entity.BlogEntity;
-import com.example.rentcar.dao.entity.ServicesEntity;
+
 import com.example.rentcar.dao.repository.AboutRepository;
 import com.example.rentcar.mapper.AboutMapper;
-import com.example.rentcar.mapper.ServicesMapper;
 import com.example.rentcar.model.AboutDto;
-import com.example.rentcar.model.BlogDto;
-import com.example.rentcar.model.ServicesDto;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -48,4 +44,5 @@ public class AboutService {
         aboutRepository.save(AboutMapper.INSTANCE.mapAboutDtoToEntity(aboutDto));
 
     }
+
 }

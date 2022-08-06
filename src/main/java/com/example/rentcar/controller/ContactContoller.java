@@ -66,11 +66,8 @@ public class ContactContoller {
     }
 
     @GetMapping("/deleteContactUs/{contactId}")
-    public String deleteContactUs(@PathVariable("contactId") Integer contactId, Model model) {
+    public String deleteContactUs(@PathVariable("contactId") Integer contactId) {
         contactUsService.deleteContactUs(contactId);
-//        List<ContactUsDto> contactUsDtoList = contactUsService.getContactUsList();
-//        model.addAttribute("contacts", contactUsDtoList);
-
         return "redirect:/rentCar/admin/";
     }
 
