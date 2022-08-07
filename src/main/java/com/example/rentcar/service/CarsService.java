@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@Service("carsService")
 public class CarsService {
     CarsRepository carsRepository;
 
@@ -40,7 +40,9 @@ public class CarsService {
         var carsDto = CarsMapper.INSTANCE.mapCarsMapperEntityToDto(carsEntity);
         return carsDto;
     }
-
+    public long totalCar(){
+        return carsRepository.count();
+    }
     @Transactional
     public void saveCar(CarsDto carsDto) {
 

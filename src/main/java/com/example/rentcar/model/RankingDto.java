@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RankingDto {
     private Integer id;
-    private Integer year_experienced;
     private Integer total_branches;
-    private Integer total_cars;
-    private Integer happy_customers;
     private Integer start_year;
 
 }

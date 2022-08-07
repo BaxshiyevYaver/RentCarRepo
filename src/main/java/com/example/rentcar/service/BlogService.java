@@ -2,9 +2,11 @@ package com.example.rentcar.service;
 
 import com.example.rentcar.dao.entity.BlogEntity;
 import com.example.rentcar.dao.repository.BlogRepository;
+import com.example.rentcar.dao.repository.FileSystemRepository;
 import com.example.rentcar.mapper.BlogMapper;
 import com.example.rentcar.model.BlogDto;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +38,9 @@ public class BlogService {
         return blogDto;
     }
 
-    public void saveBlog(BlogDto blogDto) {
+    public void saveBlog(BlogDto blogDto, MultipartFile files) throws Exception{
+        FileSystemRepository fileSys = new FileSystemRepository();
+        fileSys.save(files.getBytes(),files.getOriginalFilename());
         blogRepository.save(BlogMapper.INSTANCE.mapBlogDtoToEntity(blogDto));
 
     }

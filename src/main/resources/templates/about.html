@@ -83,7 +83,7 @@
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" th:text="${rankings.year_experienced}"></strong>
+                            <strong class="number" th:id="totalPriceFromService"  th:text="${@rankingService.calculateExpierence(rankings)}"></strong>
                             <span>Year <br>Experienced</span>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" th:text="${rankings.total_cars}"></strong>
+                            <strong class="number"  th:text="${@carsService.totalCar()}"></strong>
                             <span>Total <br>Cars</span>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" th:text="${rankings.happy_customers}">
+                            <strong class="number" th:text="${@clientsService.totalClients()}">
                             </strong>
                             <span>Happy <br>Customers</span>
                         </div>

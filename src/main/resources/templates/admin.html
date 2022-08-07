@@ -165,7 +165,7 @@
 
                 <div class="col-md-7 block-9 mb-md-5">
                     <h1 class="mb-3 bread">Blog Add</h1>
-                    <form th:action="@{/rentCar/saveBlog}" method="post" class="bg-light p-5 contact-form">
+                    <form th:action="@{/rentCar/saveBlog}" method="post" enctype="multipart/form-data" class="bg-light p-5 contact-form">
                         <div class="form-group">
                             <input type="text" name="title" id="title" class="form-control"
                                    placeholder="Blog Name">
@@ -179,6 +179,12 @@
                         <div class="form-group">
                             <textarea name="article" id="article" cols="30" rows="7" class="form-control"
                                       placeholder="Write Blog text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="baseImage">image:</label>
+                            <div class="col-sm-10">
+                                <input type="file" multiple class="form-control" id="baseImage"   name="baseImage">
+                            </div>
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" value="Add Blog"
@@ -407,7 +413,7 @@
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" th:text="${rankings.year_experienced}"></strong>
+                            <strong class="number" th:id="totalPriceFromService"  th:text="${@rankingService.calculateExpierence(rankings)}"></strong>
                             <span>Year <br>Experienced</span>
                         </div>
                     </div>
@@ -415,7 +421,7 @@
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" th:text="${rankings.total_cars}"></strong>
+                            <strong class="number"th:text="${@carsService.totalCar()}"></strong>
                             <span>Total <br>Cars</span>
                         </div>
                     </div>
@@ -423,7 +429,7 @@
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" th:text="${rankings.happy_customers}">
+                            <strong class="number" th:text="${@clientsService.totalClients()}">
                             </strong>
                             <span>Happy <br>Customers</span>
                         </div>
@@ -444,13 +450,8 @@
                               class="bg-light p-5 contact-form">
                             <div class="form-group">
                                 <input type="hidden" th:value="${rankings.id}" class="form-control" id="id" name="id">
-                                <input type="hidden" th:value="${rankings.year_experienced}" class="form-control"
-                                       id="year_experienced" name="year_experienced">
-                                <input type="hidden" th:value="${rankings.total_cars}" class="form-control"
-                                       id="total_cars" name="total_cars">
-                                <input type="hidden" th:value="${rankings.happy_customers}" class="form-control"
-                                       id="happy_customers" name="happy_customers">
-
+                                <input type="hidden" th:value="${rankings.start_year}" class="form-control"
+                                       id="start_year" name="start_year">
 
                                 <input type="number" th:value="${rankings.total_branches}" name="total_branches"
                                        id="total_branches" class="form-control"

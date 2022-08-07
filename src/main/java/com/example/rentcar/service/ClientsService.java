@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@Service("clientsService")
 public class ClientsService {
     ClientsRepository clientsRepository;
 
@@ -29,6 +29,9 @@ public class ClientsService {
 
     }
 
+    public long totalClients(){
+        return clientsRepository.count();
+    }
     public void deleteClients(Integer id) {
         clientsRepository.deleteById(id);
     }

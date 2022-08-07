@@ -57,13 +57,12 @@ public class AboutController {
     }
 
     @PostMapping("/saveAbout")
-    public String saveAbout(AboutDto aboutDto,
-     @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public String saveAbout(AboutDto aboutDto) throws IOException {
 
 //        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 //        aboutDto.setImage(fileName);
 //
-        aboutService.saveAbout(aboutDto);
+//        aboutService.saveAbout(aboutDto);
 ////
 //      String uploadDir = "about-photos";
 //        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);

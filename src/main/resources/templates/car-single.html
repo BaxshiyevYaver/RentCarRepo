@@ -137,23 +137,38 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <ul class="features">
-                                                <li class="check"><span class="ion-ios-checkmark"></span>Airconditions
-                                                </li>
-                                                <li class="check"><span class="ion-ios-checkmark"></span>Child Seat</li>
-                                                <li class="check"><span class="ion-ios-checkmark"></span>GPS</li>
-                                                <li class="check"><span class="ion-ios-checkmark"></span>Luggage</li>
-                                                <li class="check"><span class="ion-ios-checkmark"></span>Music</li>
+                                                <li class="check" th:if="${cars.airconditions}"><span  class="ion-ios-checkmark"></span>Airconditions</li>
+                                                <li class="remove" th:unless="${cars.airconditions}"><span class="ion-ios-close"></span>Airconditions</li>
+
+                                                <li class="check" th:if="${cars.child_seat}"><span  class="ion-ios-checkmark"></span>Child Seat</li>
+                                                <li class="remove" th:unless="${cars.child_seat}"><span class="ion-ios-close"></span>Child Seat</li>
+
+                                                <li class="check" th:if="${cars.gps}"><span  class="ion-ios-checkmark"></span>GPS</li>
+                                                <li class="remove" th:unless="${cars.gps}"><span class="ion-ios-close"></span>GPS</li>
+
+                                                <li class="check" th:if="${cars.seat_belt}"><span  class="ion-ios-checkmark"></span>Seat Belt</li>
+                                                <li class="remove" th:unless="${cars.seat_belt}"><span class="ion-ios-close"></span>Seat Belt</li>
+
+                                                <li class="check" th:if="${cars.bluetooth}"><span  class="ion-ios-checkmark"></span>Bluetooth</li>
+                                                <li class="remove" th:unless="${cars.bluetooth}"><span class="ion-ios-close"></span>Bluetooth</li>
+
                                             </ul>
                                             <!--										<td th:text="${cars.airconditions}"></td>-->
                                         </div>
                                         <div class="col-md-6">
                                             <ul class="features">
-                                                <li class="check"><span class="ion-ios-checkmark"></span>Seat Belt</li>
-                                                <li class="remove"><span class="ion-ios-close"></span>Sleeping Bed</li>
-                                                <li class="check"><span class="ion-ios-checkmark"></span>Water</li>
-                                                <li class="check"><span class="ion-ios-checkmark"></span>Bluetooth</li>
-                                                <li class="remove"><span class="ion-ios-close"></span>Onboard computer
-                                                </li>
+                                                <li class="check" th:if="${cars.onboard_computer}"><span  class="ion-ios-checkmark"></span>Onboard computer</li>
+                                                <li class="remove" th:unless="${cars.onboard_computer}"><span class="ion-ios-close"></span>Onboard computer</li>
+
+                                                <li class="check" th:if="${cars.remote_central_locking}"><span  class="ion-ios-checkmark"></span>Remote Central Locking</li>
+                                                <li class="remove" th:unless="${cars.remote_central_locking}"><span class="ion-ios-close"></span>Remote Central Locking</li>
+
+                                                <li class="check" th:if="${cars.climate_control}"><span  class="ion-ios-checkmark"></span>Climate Control</li>
+                                                <li class="remove" th:unless="${cars.climate_control}"><span class="ion-ios-close"></span>Climate Control</li>
+
+                                                <li class="check" th:if="${cars.audio_input}"><span  class="ion-ios-checkmark"></span>Audio Input</li>
+                                                <li class="remove" th:unless="${cars.audio_input}"><span class="ion-ios-close"></span>Audio Input</li>
+
                                             </ul>
                                         </div>
 

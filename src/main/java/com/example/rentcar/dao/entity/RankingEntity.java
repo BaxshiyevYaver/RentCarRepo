@@ -11,19 +11,14 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class RankingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "year_experienced")
-    private Integer year_experienced;
     @Column(name = "total_branches")
     private Integer total_branches;
-    @Column(name = "total_cars")
-    private Integer total_cars;
-    @Column(name = "happy_customers")
-    private Integer happy_customers;
     @Column(name = "start_year")
     private Integer start_year;
 }

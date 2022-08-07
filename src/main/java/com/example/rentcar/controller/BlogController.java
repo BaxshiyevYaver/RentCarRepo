@@ -9,10 +9,8 @@ import com.example.rentcar.service.InformationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -76,10 +74,11 @@ public class BlogController {
     }
 
     @PostMapping("/saveBlog")
-    public String saveBlog(BlogDto blogDto) {
+    public String saveBlog(BlogDto blogDto, @RequestParam("baseImage") MultipartFile multipartFile) throws Exception{
+
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd' AT 'HH:mm").format(Calendar.getInstance().getTime());
         blogDto.setDate(timeStamp);
-        blogService.saveBlog(blogDto);
+        blogService.saveBlog(blogDto,multipartFile);
         return "redirect:/rentCar/admin/";
     }
 
