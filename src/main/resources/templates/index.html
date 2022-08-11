@@ -19,7 +19,7 @@
                         <h1 class="mb-4">Fast &amp; Easy Way To Rent A Car</h1>
                         <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with
                             the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
-                        <a href="https://vimeo.com/45830194"
+                        <a href="//www.youtube.com/watch?v=mKci2gErqJo&t=70s"
                            class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
                             <div class="icon d-flex align-items-center justify-content-center">
                                 <span class="ion-ios-play"></span>
@@ -34,83 +34,6 @@
         </div>
     </div>
 
-    <section class="ftco-section ftco-no-pt bg-light">
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col-md-12	featured-top">
-                    <div class="row no-gutters">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <form action="#" class="request-form ftco-animate bg-primary">
-                                <h2>Make your trip</h2>
-                                <div class="form-group">
-                                    <label for="pick-up" class="label">Pick-up location</label>
-                                    <input id="pick-up" type="text" class="form-control"
-                                           placeholder="City, Airport, Station, etc">
-                                </div>
-                                <div class="form-group">
-                                    <label for="drop-off" class="label">Drop-off location</label>
-                                    <input id="drop-off" type="text" class="form-control"
-                                           placeholder="City, Airport, Station, etc">
-                                </div>
-                                <div class="d-flex">
-                                    <div class="form-group mr-2">
-                                        <label for="book_pick_date" class="label">Pick-up date</label>
-                                        <input type="text" class="form-control" id="book_pick_date" placeholder="Date">
-                                    </div>
-                                    <div class="form-group ml-2">
-                                        <label for="book_off_date" class="label">Drop-off date</label>
-                                        <input type="text" class="form-control" id="book_off_date" placeholder="Date">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="time_pick" class="label">Pick-up time</label>
-                                    <input type="text" class="form-control" id="time_pick" placeholder="Time">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-8 d-flex align-items-center">
-                            <div class="services-wrap rounded-right w-100">
-                                <h3 class="heading-section mb-4">Better Way to Rent Your Perfect Cars</h3>
-                                <div class="row d-flex mb-4">
-                                    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-                                        <div class="services w-100 text-center">
-                                            <div class="icon d-flex align-items-center justify-content-center"><span
-                                                    class="flaticon-route"></span></div>
-                                            <div class="text w-100">
-                                                <h3 class="heading mb-2">Choose Your Pickup Location</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-                                        <div class="services w-100 text-center">
-                                            <div class="icon d-flex align-items-center justify-content-center"><span
-                                                    class="flaticon-handshake"></span></div>
-                                            <div class="text w-100">
-                                                <h3 class="heading mb-2">Select the Best Deal</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-                                        <div class="services w-100 text-center">
-                                            <div class="icon d-flex align-items-center justify-content-center"><span
-                                                    class="flaticon-rent"></span></div>
-                                            <div class="text w-100">
-                                                <h3 class="heading mb-2">Reserve Your Rental Car</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p><a href="#" class="btn btn-primary py-3 px-4">Reserve Your Perfect Car</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     <section class="ftco-section ftco-no-pt bg-light">
@@ -126,7 +49,7 @@
                     <div class="col-md-4">
                         <div class="car-wrap rounded ftco-animate">
                             <div class="img rounded d-flex align-items-end">
-                                <img class="img-fluid w-100 pb-1"  th:src="${cars.image}" alt="image">
+                                <img class="img-fluid w-100 pb-1"  th:src="@{'data:image/jpeg;base64,'+${cars.car_image}}" alt="image">
                             </div>
                             <div class="text">
                                 <h2 class="mb-0"><a href="/rentCar/car-single/"> <td th:text="${cars.name}"></td></a></h2>
@@ -149,7 +72,7 @@
             <div class="row no-gutters" th:each="about : ${about}">
 
                 <img class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
-                     th:src="${about.image}" alt="image">
+                     th:src="@{'data:image/jpeg;base64,'+${about.image}}" alt="image">
                 <div class="col-md-6 wrap-about ftco-animate">
                     <div class="heading-section heading-section-white pl-md-5">
                         <span class="subheading" th:text="${about.name}"></span>
@@ -209,7 +132,7 @@
                         <div class="item">
                             <div class="testimony-wrap rounded text-center py-4 pb-5">
                                 <div class="user-img mb-2">
-                                    <img class="user-img mb-2" th:src="${clients.image}" alt="image">
+                                    <img class="user-img mb-2" th:src="@{'data:image/jpeg;base64,'+${clients.image}}" alt="image">
                                 </div>
                                 <div class="text pt-4">
                                     <p class="mb-4" th:text="${clients.about}"></p>
@@ -237,7 +160,7 @@
                 <div class="col-md-4 d-flex ftco-animate"  th:each="blogs : ${blogs}">
                     <div class="blog-entry justify-content-end">
                         <a th:href="${'http://localhost:8086/rentCar/blog-single/'+ blogs.id}" class="block-20">
-                            <img class="block-20" th:src="${blogs.image}" alt="image">
+                            <img  class="img-fluid w-100 pb-1" th:src="@{'data:image/jpeg;base64,'+${blogs.image}}" alt="image">
                         </a>
                         <div class="text pt-4">
                             <div class="meta mb-3">

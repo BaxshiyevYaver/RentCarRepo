@@ -15,7 +15,7 @@ public class CarsDto {
     private Double price_per_hour;
     private Double price_per_day;
     private Double price_per_month;
-    private String image;
+    private String car_image;
     private Integer mileage;
     private String transmission;
     private Integer seats;

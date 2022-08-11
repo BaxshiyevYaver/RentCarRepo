@@ -7,6 +7,7 @@ import com.example.rentcar.service.ClientsService;
 import com.example.rentcar.service.InformationService;
 import com.example.rentcar.service.RankingService;
 import lombok.AllArgsConstructor;
+import org.mapstruct.ap.shaded.freemarker.core.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -47,6 +48,7 @@ public class AboutController {
         return "about";
     }
 
+
     @GetMapping("/editAbout/{aboutId}")
     public String editAbout(
             @PathVariable("aboutId") Integer aboutId,
@@ -68,14 +70,14 @@ public class AboutController {
 //        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         aboutService.saveAbout(aboutDto);
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 
     @GetMapping("/deleteClient/{clientId}")
     public String deleteClient(@PathVariable("clientId") Integer clientId) {
         clientsService.deleteClients(clientId);
 
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 
     @GetMapping("/editClient/{clientId}")
@@ -88,13 +90,37 @@ public class AboutController {
     }
 
     @PostMapping("/saveClient")
-    public String saveClient(ClientsDto clientsDto) {
-        clientsService.saveClient(clientsDto);
-        return "redirect:/rentCar/admin/";
+    public String saveClient(@RequestParam("image") MultipartFile multipartFile,
+                             @RequestParam("name") String name,
+                             @RequestParam("about") String about,
+                             @RequestParam("work") String work,
+                             @RequestParam(value = "id", required = false) Integer id) throws IOException {
+        clientsService.saveClient(multipartFile, name, about, work, id);
+        return "redirect:/admin/admin/";
     }
+
+    @PostMapping("/editSaveClient/{id}")
+    public String editSaveClient(@PathVariable Integer id,
+                                 @RequestParam("image1") MultipartFile multipartFile,
+                                 @RequestParam("name") String name,
+                                 @RequestParam("about") String about,
+                                 @RequestParam("work") String work
+    ) throws IOException{
+        clientsService.editSaveClient(id, multipartFile, name, about, work);
+        return "redirect:/admin/admin/";
+    }
+    @PostMapping("/editSaveAbout/{id}")
+    public String editSaveCar(@PathVariable Integer id,
+                              @RequestParam("image2") MultipartFile multipartFile,
+                              AboutDto aboutDto
+    ) throws IOException {
+        aboutService.editSaveAbout(id, multipartFile, aboutDto);
+        return "redirect:/admin/admin/";
+    }
+
     @PostMapping("/saveRanking")
     public String saveRanking(RankingDto rankingDto) {
         rankingService.saveRanking(rankingDto);
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 }

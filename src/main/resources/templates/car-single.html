@@ -31,7 +31,7 @@
 
                     <div class="col-md-12">
                         <div class="car-details">
-                            <img class="img rounded" th:src="${cars.image}" alt="image">
+                            <img class="img rounded" th:src="@{'data:image/jpeg;base64,'+${cars.car_image}}" alt="image">
                             <div class="text text-center">
                                 <span class="subheading"> <td th:text="${cars.mark}"></td></span>
                                 <h2>
@@ -186,23 +186,22 @@
                                      aria-labelledby="pills-review-tab">
                                     <div class="row">
                                         <div class="col-md-7">
-                                            <h3 class="head">23 Reviews</h3>
-                                            <div class="review d-flex" th:each="carComments : ${carComments}">
+                                            <div class="review d-flex"  th:if="${carComments.car_id == cars.id}"  th:each="carComments : ${carComments}">
 
+                                               <span class="text-left" th:text="${carComments.name}"></span>
 
                                                 <div class="desc">
                                                     <h4>
-
-                                                        <span class="text-left" th:text="${carComments.name}"></span>
-                                                        <span class="text-right" th:text="${carComments.date}"></span>
+                                                       <span class="text-right" th:text="${carComments.date}"></span>
                                                     </h4>
-                                                    <p th:text="${carComments.text}"></p>
+                                                     <p th:text="${carComments.text}"></p>
                                                     <hr />
                                                 </div>
                                             </div>
-                                            <form th:action="@{/rentCar/saveCarComments}" method="post" class="p-5 bg-light">
+                                            <form th:action="@{/rentCar/saveCarComments}" th:each="cars : ${cars}" method="post" class="p-5 bg-light">
                                                 <div class="form-group">
                                                     <label for="name">Name *</label>
+                                                    <input type="hidden" th:value="${cars.id}" name="car_id" class="form-control" id="blog_id">
                                                     <input type="text" name="name" class="form-control" id="name">
                                                 </div>
                                                 <div class="form-group">
@@ -210,73 +209,13 @@
                                                     <textarea name="text" id="text" cols="15" rows="10" class="form-control"></textarea>
                                                 </div>
                                                 <div class="form-group">
+<!--                                                    <button class="btn py-3 px-4 btn-primary" id="saveComment">Post Comment</button>-->
                                                     <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
                                                 </div>
                                             </form>
                                         </div>
 
-                                        <div class="col-md-5">
-                                            <div class="rating-wrap">
-                                                <h3 class="head">Give a Review</h3>
-                                                <div class="wrap">
-                                                    <p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(98%)
-								   					</span>
-                                                        <span>20 Reviews</span>
-                                                    </p>
-                                                    <p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(85%)
-								   					</span>
-                                                        <span>10 Reviews</span>
-                                                    </p>
-                                                    <p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(70%)
-								   					</span>
-                                                        <span>5 Reviews</span>
-                                                    </p>
-                                                    <p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(10%)
-								   					</span>
-                                                        <span>0 Reviews</span>
-                                                    </p>
-                                                    <p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(0%)
-								   					</span>
-                                                        <span>0 Reviews</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -287,6 +226,34 @@
         </div>
     </section>
 
+
+
+
+<!--    <script>-->
+<!--        $("#saveComment").click(function () {-->
+<!--            let car_id = $('#car_id').val()-->
+<!--            let name = $('#name').val()-->
+<!--            let text = $('#text').val()-->
+
+
+<!--            let data = {}-->
+<!--            data.car_id = car_id-->
+<!--            data.name = name-->
+<!--            data.text = text-->
+
+
+<!--            console.log(data)-->
+
+<!--            //     $,-->
+<!--            //         type: 'POST',-->
+<!--            //         data: JSON.stringify(data),-->
+<!--            //         dataType: 'json',-->
+<!--            //         contentType: "application/json",zzzzzzzzzzzzzzzzzzzzzzzz-->
+<!--            //       -->
+<!--            //        -->
+
+<!--        )}-->
+    </script>
 </div>
 </body>
 </html>

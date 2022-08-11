@@ -20,6 +20,38 @@
     </section>
 
 
+    <section>
+        <div class="container">
+            <h1 class="mb-3 bread">Contact Us Message</h1>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <td>Car</td>
+                    <td>Date From</td>
+                    <td>Date To</td>
+                    <td>Response</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  th:each="rentCar : ${rentCar}">
+                    <td th:text="${rentCar.date_from}"></td>
+                    <td th:text="${rentCar.date_to}"></td>
+<!--                    <span. th:if="${rentCar.car_id == cars.id}" ><span th:text="${cars.name}"></span></span.>-->
+
+<!--                    <td>-->
+<!--                        <a th:href="${'http://localhost:8086/rentCar/deleteContactUs/' + rentCar.id}">-->
+<!--                            <button class="btn btn-danger">Refuse</button>-->
+<!--                        </a>-->
+                        <a th:href="${'https://mail.google.com/mail/u/1/#inbox?compose=new'}">
+                            <button class="btn btn-success">apply
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
     <section class="ftco-section contact-section">
         <div class="container">
             <div class="row d-flex mb-5 contact-info">
@@ -85,6 +117,9 @@
         </div>
     </section>
 
+
+
+
     <section>
         <div class="container">
             <h1 class="mb-3 bread">Contact Us Message</h1>
@@ -134,7 +169,8 @@
                         <div class="block-21 mb-4 d-flex" th:each="blogs : ${blogs}">
                             <tr>
                                 <a href="/rentCar/blog-single">
-                                    <img class="blog-img mr-4" th:src="${blogs.image}" alt="image">
+                                    <img class="blog-img mr-4" th:src="@{'data:image/jpeg;base64,'+${blogs.image}}"
+                                         alt="image">
                                 </a>
                                 <div class="text">
                                     <h3 class="heading"><a href="#">
@@ -163,27 +199,32 @@
                 <br>
                 <br>
 
+                </form>
                 <div class="col-md-7 block-9 mb-md-5">
                     <h1 class="mb-3 bread">Blog Add</h1>
-                    <form th:action="@{/rentCar/saveBlog}" method="post" enctype="multipart/form-data" class="bg-light p-5 contact-form">
+                    <form th:action="@{/rentCar/saveBlog}" th:object="${blogs}" enctype="multipart/form-data"
+                          class="bg-light p-5 contact-form" method="post">
                         <div class="form-group">
-                            <input type="text" name="title" id="title" class="form-control"
-                                   placeholder="Blog Name">
+                            <input type="text" th:name="title" id="title" class="form-control"
+                                   placeholder="Blog Name" required/>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="text" id="text" class="form-control" placeholder="Blog Title">
+                            <input type="text" th:name="text" id="text" class="form-control" placeholder="Blog Title"
+                                   required/>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="author" id="author" class="form-control" placeholder="Blog Author">
+                            <input type="text" th:name="author" id="author" class="form-control"
+                                   placeholder="Blog Author" required/>
                         </div>
                         <div class="form-group">
-                            <textarea name="article" id="article" cols="30" rows="7" class="form-control"
-                                      placeholder="Write Blog text"></textarea>
+                            <textarea th:name="article" id="article" cols="30" rows="7" class="form-control"
+                                      placeholder="Write Blog text" required/></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="baseImage">image:</label>
+                            <label class="control-label col-sm-2" for="blogImage">image:</label>
                             <div class="col-sm-10">
-                                <input type="file" multiple class="form-control" id="baseImage"   name="baseImage">
+                                <input type="file" id="blogImage" th:name="blogImage" accept="image/png, image/jpeg"
+                                       required/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -260,7 +301,7 @@
             <div class="row no-gutters" th:each="about : ${about}">
 
                 <img class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
-                     th:src="${about.image}" alt="image">
+                     th:src="@{'data:image/jpeg;base64,'+${about.image}}" alt="image">
                 <div class="col-md-6 wrap-about ftco-animate">
                     <div class="heading-section heading-section-white pl-md-5">
                         <span class="subheading" th:text="${about.name}"></span>
@@ -294,7 +335,8 @@
                         <div class="item">
                             <div class="testimony-wrap rounded text-center py-4 pb-5">
                                 <div class="user-img mb-2">
-                                    <img class="user-img mb-2" th:src="${clients.image}" alt="image">
+                                    <img class="user-img mb-2" th:src="@{'data:image/jpeg;base64,'+${clients.image}}"
+                                         alt="image">
                                 </div>
                                 <div class="text pt-4">
                                     <p class="mb-4" th:text="${clients.about}"></p>
@@ -319,25 +361,31 @@
             <br>
             <div class="col-md-10 block-9 mb-md-5">
                 <h2 class="mb-3">Add Happy Client</h2>
-                <form th:action="@{/rentCar/saveClient}" method="post"
+                <form th:action="@{/rentCar/saveClient}" th:object="${clients}" enctype="multipart/form-data"
+                      method="post"
                       class="bg-light p-5 contact-form">
                     <div class="form-group">
                         <h5>Client Name:</h5>
-                        <input type="text" name="name" id="nameClient"
+                        <input type="text" th:name="name" id="nameClient"
                                class="form-control"
                                placeholder="Client Name">
                     </div>
                     <div class="form-group">
                         <h5>Client Work:</h5>
-                        <input type="text" name="work" id="workClient"
+                        <input type="text" th:name="work" id="workClient"
                                class="form-control"
                                placeholder="Client Name">
                     </div>
                     <div class="form-group">
                         <h5>Client About:</h5>
-                        <textarea type="text" name="about" id="aboutClient" class="form-control"
+                        <textarea type="text" th:name="about" id="aboutClient" class="form-control"
                                   cols="30" rows="7" placeholder="About Client"></textarea>
                     </div>
+                    <div class="form-group">
+                        <h5>Client Image:</h5>
+                        <input type="file" id="image" th:name="image" accept="image/png, image/jpeg" required/>
+                    </div>
+
                     <div class="form-group">
                         <input type="submit" name="submit" value="Add Client"
                                class="btn btn-primary py-3 px-5">
@@ -368,7 +416,9 @@
                         <tbody>
                         <tr class="" th:each="cars : ${cars}">
                             <td class="car-image">
-                                <div class="img"><img class="img-fluid w-100 pb-1" th:src="${cars.image}" alt="image">
+                                <div class="img"><img class="img-fluid w-100 pb-1"
+                                                      th:src="@{'data:image/jpeg;base64,'+${cars.car_image}}"
+                                                      alt="image">
                                 </div>
                             </td>
                             <td class="price"><span class="heading mb-0 pl-3" th:text="${cars.year} + ' '"></span><span
@@ -413,7 +463,8 @@
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number" th:id="totalPriceFromService"  th:text="${@rankingService.calculateExpierence(rankings)}"></strong>
+                            <strong class="number" th:id="totalPriceFromService"
+                                    th:text="${@rankingService.calculateExpierence(rankings)}"></strong>
                             <span>Year <br>Experienced</span>
                         </div>
                     </div>
@@ -421,7 +472,7 @@
                 <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                     <div class="block-18">
                         <div class="text text-border d-flex align-items-center">
-                            <strong class="number"th:text="${@carsService.totalCar()}"></strong>
+                            <strong class="number" th:text="${@carsService.totalCar()}"></strong>
                             <span>Total <br>Cars</span>
                         </div>
                     </div>

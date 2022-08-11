@@ -36,7 +36,7 @@ public class ServicesController {
     public String deleteService(@PathVariable("serviceId") Integer serviceId) {
         servicesService.deleteService(serviceId);
 
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 
     @GetMapping("/editService/{serviceId}")
@@ -51,6 +51,6 @@ public class ServicesController {
     @PostMapping("/saveService")
     public String saveService(ServicesDto servicesDto) {
         servicesService.saveService(servicesDto);
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 }

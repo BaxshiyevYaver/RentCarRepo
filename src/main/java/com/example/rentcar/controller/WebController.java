@@ -47,6 +47,8 @@ public class WebController {
         List<BlogDto> blogDtoList = blogService.getBlogList();
         model.addAttribute("blogs", blogDtoList);
 
+
+
         List<InformationDto> informationDtoList = informationService.getInformationList();
         model.addAttribute("informations", informationDtoList);
         return "index";

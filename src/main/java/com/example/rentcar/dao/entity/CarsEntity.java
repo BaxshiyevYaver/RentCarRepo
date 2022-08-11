@@ -1,6 +1,7 @@
 package com.example.rentcar.dao.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,8 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+
 public class CarsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +29,10 @@ public class CarsEntity {
     private Double price_per_day;
     @Column(name = "price_per_month")
     private Double price_per_month;
-    @Column(name = "image")
-    private String image;
+
+    @Lob
+    @Column(name = "car_image")
+    private String car_image;
     @Column(name = "mileage")
     private Integer mileage;
     @Column(name = "transmission")

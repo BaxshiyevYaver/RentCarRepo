@@ -1,6 +1,7 @@
 package com.example.rentcar.dao.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,8 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+
 public class ServicesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

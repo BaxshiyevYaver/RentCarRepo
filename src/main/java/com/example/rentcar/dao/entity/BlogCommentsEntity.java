@@ -1,6 +1,7 @@
 package com.example.rentcar.dao.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,8 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+
 public class BlogCommentsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +25,17 @@ public class BlogCommentsEntity {
     private String email;
     @Column(name = "message")
     private String message;
-    @Column(name = "blog_id")
-    private Integer blog_id;
+
+//    @Column(name = "blog_id")
+//    private Integer blog_id;
+//    (fetch = FetchType.EAGER)
+
     @Column(name = "date")
     private String date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="blog_id")
+    private BlogEntity blogEntity;
+
 
 }

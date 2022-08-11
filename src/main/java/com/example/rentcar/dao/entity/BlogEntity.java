@@ -1,16 +1,22 @@
 package com.example.rentcar.dao.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity(name = "blog")
 @Table(name = "blog")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+
 public class BlogEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +37,13 @@ public class BlogEntity {
     @Column(name = "author")
     private String author;
 
+    @Lob
     @Column(name = "image")
     private String image;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<BlogCommentsEntity> orderDetail = new HashSet();
 
+//(fetch = FetchType.EAGER)
 }
+//    private List<BlogCommentsEntity> blogCommentsEntities;

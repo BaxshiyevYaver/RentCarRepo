@@ -26,10 +26,9 @@
         <br>
         <div class="col-md-9 block-9 mb-md-5">
             <h1 class="mb-3 bread">Car Add</h1>
-            <form th:action="@{/rentCar/saveCar}" th:each="car : ${car}" method="post" class="bg-light p-5 contact-form">
+            <form th:action="@{/rentCar/editSaveCar/{id}(id=${car.id})}" th:object="${car}" enctype="multipart/form-data" method="post" class="bg-light p-5 contact-form">
                 <div class="form-group">
                     <input type="hidden" th:value="${car.id}" class="form-control" id="id" name="id">
-                    <input type="hidden" th:value="${car.image}" class="form-control" id="image" name="image">
 
 
                     <input type="text" th:value="${car.name}" name="name" id="name" class="form-control"
@@ -102,6 +101,12 @@
                 <div class="form-group">
                     <input type="checkbox" th:checked="${car.audio_input}" id="audio_input" name="audio_input">
                     <label for="audio_input">Audio Input</label><br>
+                </div>
+                <div class="form-group">
+                    <img th:src="@{'data:image/jpeg;base64,'+${car.car_image}}" alt="" height="50px" width="50px">
+                    <h5>Car Photo:</h5>
+
+                    <input type="file"  th:name="image" accept="image/png, image/jpeg" class="form-control" id="image" >
                 </div>
                 <div class="form-group">
                             <textarea name="description" th:text="${car.description}" id="description" cols="30" rows="7" class="form-control"

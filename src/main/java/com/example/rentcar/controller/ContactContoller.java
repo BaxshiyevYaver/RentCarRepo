@@ -37,7 +37,7 @@ public class ContactContoller {
     @PostMapping("/saveInformation")
     public String saveInformation(InformationDto informationDto) {
         informationService.saveInformation(informationDto);
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 
     //    @PostMapping("/saveAllinformations")
@@ -48,7 +48,7 @@ public class ContactContoller {
     @GetMapping("/deleteInformation/")
     public String deleteLaptop() {
         informationService.deleteInformation();
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
     @GetMapping("/editInformation/{informationId}")
     public String editInformation(
@@ -62,13 +62,13 @@ public class ContactContoller {
     @GetMapping("/deleteAllContactUs/")
     public String deleteAllContactUs() {
         contactUsService.deleteAllContactUs();
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 
     @GetMapping("/deleteContactUs/{contactId}")
     public String deleteContactUs(@PathVariable("contactId") Integer contactId) {
         contactUsService.deleteContactUs(contactId);
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 
 }

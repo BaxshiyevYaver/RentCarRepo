@@ -30,7 +30,7 @@
                     <div class="blog-entry justify-content-end mb-md-5">
                         <tr th:each="blogs : ${blogs}">
                             <a th:href="${'http://localhost:8086/rentCar/blog-single/'+ blogs.id}">
-                                <img class="img-fluid w-100 pb-1"  th:src="${blogs.image}" alt="image">
+                                <img class="img-fluid w-100 pb-1"  th:src="@{'data:image/jpeg;base64,'+${blogs.image}}" alt="image">
                             </a>
                             <div class="text px-md-5 pt-4">
                                 <div class="meta mb-3">

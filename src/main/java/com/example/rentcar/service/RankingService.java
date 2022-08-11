@@ -2,7 +2,7 @@ package com.example.rentcar.service;
 
 import com.example.rentcar.dao.entity.RankingEntity;
 import com.example.rentcar.dao.repository.CarCommentsRepository;
-import com.example.rentcar.dao.repository.CarsRepository;
+//import com.example.rentcar.dao.repository.CarsRepository;
 import com.example.rentcar.dao.repository.RankingRepository;
 import com.example.rentcar.mapper.RankingMapper;
 import com.example.rentcar.model.RankingDto;

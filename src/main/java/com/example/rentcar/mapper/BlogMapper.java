@@ -11,7 +11,6 @@ public interface BlogMapper {
     BlogMapper INSTANCE = Mappers.getMapper(BlogMapper.class);
 
     BlogDto mapBlogEntityToDto(BlogEntity blogEntity);
-    @Mapping(target = "image", ignore = true)
     BlogEntity mapBlogDtoToEntity(BlogDto blogDto);
 }
 

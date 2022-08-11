@@ -1,5 +1,6 @@
 package com.example.rentcar.controller;
 
+import com.example.rentcar.dao.entity.BlogCommentsEntity;
 import com.example.rentcar.model.BlogCommentsDto;
 import com.example.rentcar.model.BlogDto;
 import com.example.rentcar.model.InformationDto;
@@ -7,11 +8,14 @@ import com.example.rentcar.service.BlogCommentsService;
 import com.example.rentcar.service.BlogService;
 import com.example.rentcar.service.InformationService;
 import lombok.AllArgsConstructor;
+import org.mapstruct.ap.shaded.freemarker.core.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -20,10 +24,14 @@ import java.util.List;
 @RequestMapping("/rentCar")
 @AllArgsConstructor
 public class BlogController {
-    BlogService blogService;
-    BlogCommentsService blogCommentsService;
-    InformationService informationService;
+    @Autowired
 
+    BlogService blogService;
+    @Autowired
+    BlogCommentsService blogCommentsService;
+    @Autowired
+
+    InformationService informationService;
 
 
     @GetMapping("/blog")
@@ -33,17 +41,19 @@ public class BlogController {
 
         List<InformationDto> informationDtoList = informationService.getInformationList();
         model.addAttribute("informations", informationDtoList);
+
+
         return "blog";
     }
 
 
     @GetMapping("/blog-single/{blogId}")
-    public String getBlogSingle( @PathVariable("blogId") Integer blogId,
-                                 Model model) {
+    public String getBlogSingle(@PathVariable("blogId") Integer blogId,
+                                Model model) {
         BlogDto blogDto = blogService.getBlog(blogId);
         model.addAttribute("blog", blogDto);
 
-        List<BlogCommentsDto> blogCommentsDtoList = blogCommentsService.getBlogCommentsList();
+        List<BlogCommentsDto> blogCommentsDtoList = blogCommentsService.getBlogCommentsList(blogId);
         model.addAttribute("blogComments", blogCommentsDtoList);
 
         List<BlogDto> blogDtoList = blogService.getBlogList();
@@ -65,29 +75,48 @@ public class BlogController {
 
     @PostMapping("/saveBlogComments")
     public String saveBlogComments(BlogCommentsDto blogCommentsDto) {
-        String timeStamp = new SimpleDateFormat("yyyy-MM-dd' AT 'HH:mm").format(Calendar.getInstance().getTime());
-        blogCommentsDto.setDate(timeStamp);
+
 
         blogCommentsService.saveBlogComments(blogCommentsDto);
-        return "redirect:/rentCar/blog-single/";
+
+        return "redirect:/rentCar/blog/";
 
     }
 
     @PostMapping("/saveBlog")
-    public String saveBlog(BlogDto blogDto, @RequestParam("baseImage") MultipartFile multipartFile) throws Exception{
+    public String saveBlog(@RequestParam("blogImage") MultipartFile multipartFile,
+                           @RequestParam("title") String title,
+                           @RequestParam("article") String article,
+                           @RequestParam("text") String text,
+                           @RequestParam("author") String author,
+                           @RequestParam(value = "id", required = false) Integer id) throws IOException {
 
-        String timeStamp = new SimpleDateFormat("yyyy-MM-dd' AT 'HH:mm").format(Calendar.getInstance().getTime());
-        blogDto.setDate(timeStamp);
-        blogService.saveBlog(blogDto,multipartFile);
-        return "redirect:/rentCar/admin/";
+
+        blogService.saveBlog(multipartFile, title, article, text, author, id);
+        return "redirect:/admin/admin/";
+    }
+
+    @PostMapping("/editSaveBlog/{id}")
+    public String editSaveBlog(@PathVariable Integer id,
+                               @RequestParam("image1") MultipartFile multipartFile,
+                               @RequestParam("title") String title,
+                               @RequestParam("article") String article,
+                               @RequestParam("text") String text,
+                               @RequestParam("author") String author
+    ) throws IOException {
+        blogService.editSaveBlog(id, multipartFile, title, article, text, author);
+        return "redirect:/admin/admin/";
     }
 
     @GetMapping("/deleteBlog/{blogId}")
     public String deleteBlog(@PathVariable("blogId") Integer blogId) {
+
+        blogCommentsService.deleteBlogComments();
         blogService.deleteBlog(blogId);
 
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
+
 
     @GetMapping("/editBlog/{blogId}")
     public String editInformation(

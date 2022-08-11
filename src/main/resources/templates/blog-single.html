@@ -31,7 +31,7 @@
                         <h2 class="mb-3">
                             <td th:text="${blog.title}"></td>
                         </h2>
-                        <img class="img-fluid w-100 pb-1" th:src="${blog.image}" alt="image">
+                        <img class="img-fluid w-100 pb-1" th:src="@{'data:image/jpeg;base64,'+${blog.image}}" alt="image">
 
                         <h2 class="mb-3 mt-5">
                             <td th:text="${blog.text}"></td>
@@ -47,7 +47,7 @@
                     </tr>
 
                     <div class="pt-5 mt-5">
-                        <h3 class="mb-5">6 Comments</h3>
+                        <h3 class="mb-5" th:text="${blogComments.stream().count()} + ' Comments'" ></h3>
                         <ul class="comment-list">
                             <li class="comment">
                                 <tr th:each="blogComments : ${blogComments}">
@@ -68,8 +68,10 @@
 
                         <div class="comment-form-wrap pt-5">
                             <h3 class="mb-5">Leave a comment</h3>
-                            <form th:action="@{/rentCar/saveBlogComments}" method="post" class="p-5 bg-light">
+                            <form th:action="@{/rentCar/saveBlogComments}" th:each="blog : ${blog}" method="post" class="p-5 bg-light">
                                 <div class="form-group">
+                                    <input type="hidden" th:value="${blog.id}" name="blog_id" class="form-control" id="blog_id">
+
                                     <label for="name">Name *</label>
                                     <input type="text" name="name" class="form-control" id="name">
                                 </div>
@@ -107,7 +109,7 @@
                         <div class="block-21 mb-4 d-flex" th:each="blogs : ${blogs}">
                             <tr >
                                 <a th:href="${'http://localhost:8086/rentCar/blog-single/'+ blogs.id}">
-                                    <img class="blog-img mr-4" th:src="${blogs.image}" alt="image">
+                                    <img class="blog-img mr-4" th:src="@{'data:image/jpeg;base64,'+${blog.image}}" alt="image">
                                 </a>
                                 <div class="text">
                                     <h3 class="heading"><a th:href="${'http://localhost:8086/rentCar/blog-single/'+ blogs.id}">

@@ -6,6 +6,8 @@ import com.example.rentcar.mapper.CarCommentsMapper;
 import com.example.rentcar.model.CarCommentsDto;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +29,8 @@ public class CarCommentsService {
     }
 
     public void saveCarComments(CarCommentsDto carCommentsDto) {
-
+        LocalDate time = LocalDate.now();
+        carCommentsDto.setDate(Date.valueOf(time));
         carCommentsRepository.save(CarCommentsMapper.INSTANCE.mapCarCommentsDtoToEntity(carCommentsDto));
     }
 }

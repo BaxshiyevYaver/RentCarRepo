@@ -4,11 +4,16 @@ import com.example.rentcar.dao.entity.AboutEntity;
 
 import com.example.rentcar.dao.repository.AboutRepository;
 import com.example.rentcar.mapper.AboutMapper;
+import com.example.rentcar.mapper.CarsMapper;
 import com.example.rentcar.model.AboutDto;
+import com.example.rentcar.model.CarsDto;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.text.html.HTML;
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,5 +52,19 @@ public class AboutService {
         aboutRepository.save(AboutMapper.INSTANCE.mapAboutDtoToEntity(aboutDto));
 
     }
+
+    @Transactional
+    public void editSaveAbout(Integer id, MultipartFile multipartFile, AboutDto aboutDto) throws IOException {
+
+        var aboutEntity = aboutRepository.findById(id).get();
+        //var aboutDto = CarsMapper.INSTANCE.mapCarsMapperEntityToDto(carEntity);
+
+
+        if (!multipartFile.isEmpty()) {
+            aboutDto.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        }
+        aboutRepository.save(AboutMapper.INSTANCE.mapAboutDtoToEntity(aboutDto));
+    }
+
 
 }

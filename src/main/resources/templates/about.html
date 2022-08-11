@@ -28,7 +28,7 @@
             <div class="row no-gutters" th:each="about : ${about}">
 
                 <img class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center"
-                     th:src="${about.image}" alt="image">
+                     th:src="@{'data:image/jpeg;base64,'+${about.image}}" alt="image">
                 <div class="col-md-6 wrap-about ftco-animate">
                     <div class="heading-section heading-section-white pl-md-5">
                         <span class="subheading" th:text="${about.name}"></span>
@@ -60,7 +60,7 @@
                         <div class="item">
                             <div class="testimony-wrap rounded text-center py-4 pb-5">
                                 <div class="user-img mb-2">
-                                    <img class="user-img mb-2" th:src="${clients.image}" alt="image">
+                                    <img class="user-img mb-2" th:src="@{'data:image/jpeg;base64,'+${clients.image}}" alt="image">
                                 </div>
                                 <div class="text pt-4">
                                     <p class="mb-4" th:text="${clients.about}"></p>

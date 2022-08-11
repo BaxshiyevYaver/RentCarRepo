@@ -1,5 +1,6 @@
 package com.example.rentcar.controller;
 
+import com.example.rentcar.dao.entity.RentCarEntity;
 import com.example.rentcar.model.*;
 import com.example.rentcar.service.CarCommentsService;
 import com.example.rentcar.service.CarsService;
@@ -7,11 +8,10 @@ import com.example.rentcar.service.InformationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -51,16 +51,17 @@ public class CarController {
 
     @GetMapping("/addCar")
     public String redirectCarAdd(Model model) {
+        List<CarsDto> carsDtoList = carsService.getCarsList();
+        model.addAttribute("cars", carsDtoList);
+
         return "addCar";
     }
 
     @PostMapping("/saveCarComments")
     public String saveCarComments(CarCommentsDto carCommentsDto) {
-        LocalDate time = LocalDate.now();
-        carCommentsDto.setDate(Date.valueOf(time));
 
         carCommentsService.saveCarComments(carCommentsDto);
-        return "redirect:/rentCar/car-single/";
+        return "redirect:/rentCar/car";
 
     }
 
@@ -68,7 +69,7 @@ public class CarController {
     public String deleteCar(@PathVariable("carId") Integer carId, Model model) {
         carsService.deleteCar(carId);
 
-        return "redirect:/rentCar/admin/";
+        return "redirect:/admin/admin/";
     }
 
     @GetMapping("/editCar/{carId}")
@@ -81,9 +82,34 @@ public class CarController {
     }
 
     @PostMapping("/saveCar")
-    public String saveCar(CarsDto carsDto) {
-        carsService.saveCar(carsDto);
-        return "redirect:/rentCar/admin/";
+    public String saveCar(@RequestParam("image1") MultipartFile car_image, CarsDto carsDto
+    ) throws IOException {
+        carsService.saveCar(carsDto, car_image);
+        return "redirect:/admin/admin/";
     }
 
+    @PostMapping("/editSaveCar/{id}")
+    public String editSaveCar(@PathVariable Integer id,
+                              @RequestParam("image") MultipartFile multipartFile,
+                              CarsDto carsDto
+    ) throws IOException {
+        carsService.editSaveCar(id, multipartFile, carsDto);
+        return "redirect:/admin/admin/";
+    }
+
+
+    @GetMapping("/rent/{carId}")
+    public String redirectRent(@PathVariable("carId") Integer carId,
+                               Model model) {
+        CarsDto carsDto = carsService.getCar(carId);
+        model.addAttribute("car", carsDto);
+        return "rentCar";
+    }
+
+    @PostMapping("/checkRentCar")
+    public String checkRentCar(@RequestBody RentCarEntity rentCarEntity
+    ) {
+        var res = carsService.checkRentCar(rentCarEntity);
+        return "{\"test\":\"data\"}";
+    }
 }

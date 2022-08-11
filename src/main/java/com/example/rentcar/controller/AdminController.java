@@ -1,5 +1,6 @@
 package com.example.rentcar.controller;
 
+import com.example.rentcar.dao.entity.RentCarEntity;
 import com.example.rentcar.model.*;
 import com.example.rentcar.service.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/rentCar")
+@RequestMapping("/admin")
 @AllArgsConstructor
 public class AdminController {
     InformationService informationService;
@@ -49,6 +50,9 @@ public class AdminController {
 
         List<RankingDto> rankingDtoList = rankingService.getRankingList();
         model.addAttribute("rankings", rankingDtoList);
+
+        List<RentCarEntity> rentCarEntityList = carsService.getRentCarList();
+        model.addAttribute("rentCar", rentCarEntityList);
         return "admin";
     }
 
