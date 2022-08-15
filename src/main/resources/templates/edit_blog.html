@@ -23,11 +23,10 @@
     <section>
         <h1 class="mb-3 bread"></h1>
         <br>
-        <form th:action="@{/rentCar/editSaveBlog/{id}(id=${blog.id})}" th:object="${blog}" enctype="multipart/form-data" method="post" class="bg-light p-5 contact-form">
+        <form th:action="@{/rentCar/editSaveBlog/{id}(id=${blog.id})}" th:object="${blog}" enctype="multipart/form-data"
+              method="post" class="bg-light p-5 contact-form">
             <div class="form-group">
-<!--                <input type="hidden" th:value="${blog.image}" class="form-control" id="image" name="image">-->
                 <input type="hidden" th:value="${blog.id}" class="form-control" id="id" name="id">
-
                 <h4>Blog Name:</h4>
                 <input type="text" th:value="${blog.title}" name="title" id="title" class="form-control"
                        placeholder="Blog Name">
@@ -45,7 +44,7 @@
             <div class="form-group">
                 <h5>Blog Photo:</h5>
                 <img th:src="@{'data:image/jpeg;base64,'+${blog.image}}" alt="" height="10px" width="10px">
-                <input type="file"  th:name="image1" accept="image/png, image/jpeg" class="form-control" id="image1" >
+                <input type="file"  th:name="blog_image" accept="image/png, image/jpeg" class="form-control" id="blog_image" >
 
             </div>
 

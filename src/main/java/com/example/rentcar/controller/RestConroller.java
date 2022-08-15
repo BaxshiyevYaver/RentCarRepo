@@ -17,6 +17,7 @@ public class RestConroller {
     @PostMapping("/checkRentCar")
     public String checkRentCar(@RequestBody RentCarEntity rentCarEntity
     ) {
+
         var res=carsService.checkRentCar(rentCarEntity);
         return "{\"result\":\"%s\"}".formatted(res) ;
     }

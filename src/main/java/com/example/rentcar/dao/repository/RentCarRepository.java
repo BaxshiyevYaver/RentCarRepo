@@ -1,5 +1,6 @@
 package com.example.rentcar.dao.repository;
 
+import com.example.rentcar.dao.entity.CarCommentsEntity;
 import com.example.rentcar.dao.entity.RankingEntity;
 import com.example.rentcar.dao.entity.RentCarEntity;
 //import com.example.rentcar.mapper.CarsMapper;
@@ -18,5 +19,8 @@ public interface RentCarRepository extends JpaRepository<RentCarEntity,Integer> 
 
     @Query("SELECT c FROM rent_car c WHERE  c.car_id = ?1 and c.date_to >= ?2")
     List<RentCarEntity> checkRentCarById(Integer car_id, Date date_from);
+
+    @Query("select c FROM rent_car c  WHERE  c.car_id = ?1")
+    Iterable<RentCarEntity> checkCar(Integer id);
 
 }

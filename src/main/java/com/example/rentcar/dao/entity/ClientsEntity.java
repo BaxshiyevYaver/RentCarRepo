@@ -28,6 +28,8 @@ public class ClientsEntity {
     @Lob
     @Column(name = "image")
     private String image;
+    @Column(name = "image_name")
+    private String image_name;
 
 
 }

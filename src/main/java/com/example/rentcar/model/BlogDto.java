@@ -1,10 +1,13 @@
 
 package com.example.rentcar.model;
 
+import com.example.rentcar.dao.entity.BlogCommentsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Set;
 
 @Data
 @AllArgsConstructor

@@ -31,7 +31,8 @@
 
                     <div class="col-md-12">
                         <div class="car-details">
-                            <img class="img rounded" th:src="@{'data:image/jpeg;base64,'+${cars.car_image}}" alt="image">
+                            <img class="img rounded" th:src="@{'data:image/jpeg;base64,'+${cars.car_image}}"
+                                 alt="image">
                             <div class="text text-center">
                                 <span class="subheading"> <td th:text="${cars.mark}"></td></span>
                                 <h2>
@@ -137,37 +138,73 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <ul class="features">
-                                                <li class="check" th:if="${cars.airconditions}"><span  class="ion-ios-checkmark"></span>Airconditions</li>
-                                                <li class="remove" th:unless="${cars.airconditions}"><span class="ion-ios-close"></span>Airconditions</li>
+                                                <li class="check" th:if="${cars.airconditions}"><span
+                                                        class="ion-ios-checkmark"></span>Airconditions
+                                                </li>
+                                                <li class="remove" th:unless="${cars.airconditions}"><span
+                                                        class="ion-ios-close"></span>Airconditions
+                                                </li>
 
-                                                <li class="check" th:if="${cars.child_seat}"><span  class="ion-ios-checkmark"></span>Child Seat</li>
-                                                <li class="remove" th:unless="${cars.child_seat}"><span class="ion-ios-close"></span>Child Seat</li>
+                                                <li class="check" th:if="${cars.child_seat}"><span
+                                                        class="ion-ios-checkmark"></span>Child Seat
+                                                </li>
+                                                <li class="remove" th:unless="${cars.child_seat}"><span
+                                                        class="ion-ios-close"></span>Child Seat
+                                                </li>
 
-                                                <li class="check" th:if="${cars.gps}"><span  class="ion-ios-checkmark"></span>GPS</li>
-                                                <li class="remove" th:unless="${cars.gps}"><span class="ion-ios-close"></span>GPS</li>
+                                                <li class="check" th:if="${cars.gps}"><span
+                                                        class="ion-ios-checkmark"></span>GPS
+                                                </li>
+                                                <li class="remove" th:unless="${cars.gps}"><span
+                                                        class="ion-ios-close"></span>GPS
+                                                </li>
 
-                                                <li class="check" th:if="${cars.seat_belt}"><span  class="ion-ios-checkmark"></span>Seat Belt</li>
-                                                <li class="remove" th:unless="${cars.seat_belt}"><span class="ion-ios-close"></span>Seat Belt</li>
+                                                <li class="check" th:if="${cars.seat_belt}"><span
+                                                        class="ion-ios-checkmark"></span>Seat Belt
+                                                </li>
+                                                <li class="remove" th:unless="${cars.seat_belt}"><span
+                                                        class="ion-ios-close"></span>Seat Belt
+                                                </li>
 
-                                                <li class="check" th:if="${cars.bluetooth}"><span  class="ion-ios-checkmark"></span>Bluetooth</li>
-                                                <li class="remove" th:unless="${cars.bluetooth}"><span class="ion-ios-close"></span>Bluetooth</li>
+                                                <li class="check" th:if="${cars.bluetooth}"><span
+                                                        class="ion-ios-checkmark"></span>Bluetooth
+                                                </li>
+                                                <li class="remove" th:unless="${cars.bluetooth}"><span
+                                                        class="ion-ios-close"></span>Bluetooth
+                                                </li>
 
                                             </ul>
                                             <!--										<td th:text="${cars.airconditions}"></td>-->
                                         </div>
                                         <div class="col-md-6">
                                             <ul class="features">
-                                                <li class="check" th:if="${cars.onboard_computer}"><span  class="ion-ios-checkmark"></span>Onboard computer</li>
-                                                <li class="remove" th:unless="${cars.onboard_computer}"><span class="ion-ios-close"></span>Onboard computer</li>
+                                                <li class="check" th:if="${cars.onboard_computer}"><span
+                                                        class="ion-ios-checkmark"></span>Onboard computer
+                                                </li>
+                                                <li class="remove" th:unless="${cars.onboard_computer}"><span
+                                                        class="ion-ios-close"></span>Onboard computer
+                                                </li>
 
-                                                <li class="check" th:if="${cars.remote_central_locking}"><span  class="ion-ios-checkmark"></span>Remote Central Locking</li>
-                                                <li class="remove" th:unless="${cars.remote_central_locking}"><span class="ion-ios-close"></span>Remote Central Locking</li>
+                                                <li class="check" th:if="${cars.remote_central_locking}"><span
+                                                        class="ion-ios-checkmark"></span>Remote Central Locking
+                                                </li>
+                                                <li class="remove" th:unless="${cars.remote_central_locking}"><span
+                                                        class="ion-ios-close"></span>Remote Central Locking
+                                                </li>
 
-                                                <li class="check" th:if="${cars.climate_control}"><span  class="ion-ios-checkmark"></span>Climate Control</li>
-                                                <li class="remove" th:unless="${cars.climate_control}"><span class="ion-ios-close"></span>Climate Control</li>
+                                                <li class="check" th:if="${cars.climate_control}"><span
+                                                        class="ion-ios-checkmark"></span>Climate Control
+                                                </li>
+                                                <li class="remove" th:unless="${cars.climate_control}"><span
+                                                        class="ion-ios-close"></span>Climate Control
+                                                </li>
 
-                                                <li class="check" th:if="${cars.audio_input}"><span  class="ion-ios-checkmark"></span>Audio Input</li>
-                                                <li class="remove" th:unless="${cars.audio_input}"><span class="ion-ios-close"></span>Audio Input</li>
+                                                <li class="check" th:if="${cars.audio_input}"><span
+                                                        class="ion-ios-checkmark"></span>Audio Input
+                                                </li>
+                                                <li class="remove" th:unless="${cars.audio_input}"><span
+                                                        class="ion-ios-close"></span>Audio Input
+                                                </li>
 
                                             </ul>
                                         </div>
@@ -186,33 +223,40 @@
                                      aria-labelledby="pills-review-tab">
                                     <div class="row">
                                         <div class="col-md-7">
-                                            <div class="review d-flex"  th:if="${carComments.car_id == cars.id}"  th:each="carComments : ${carComments}">
+                                            <div class="review d-flex" th:if="${carComments.car_id == cars.id}"
+                                                 th:each="carComments : ${carComments}">
 
-                                               <span class="text-left" th:text="${carComments.name}"></span>
+                                                <span class="text-left" th:text="${carComments.name}"></span>
 
                                                 <div class="desc">
                                                     <h4>
-                                                       <span class="text-right" th:text="${carComments.date}"></span>
+                                                        <span class="text-right" th:text="${carComments.date}"></span>
                                                     </h4>
-                                                     <p th:text="${carComments.text}"></p>
-                                                    <hr />
+                                                    <p th:text="${carComments.text}"></p>
+                                                    <hr/>
                                                 </div>
                                             </div>
-                                            <form th:action="@{/rentCar/saveCarComments}" th:each="cars : ${cars}" method="post" class="p-5 bg-light">
-                                                <div class="form-group">
-                                                    <label for="name">Name *</label>
-                                                    <input type="hidden" th:value="${cars.id}" name="car_id" class="form-control" id="blog_id">
-                                                    <input type="text" name="name" class="form-control" id="name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="text">Message</label>
-                                                    <textarea name="text" id="text" cols="15" rows="10" class="form-control"></textarea>
-                                                </div>
-                                                <div class="form-group">
-<!--                                                    <button class="btn py-3 px-4 btn-primary" id="saveComment">Post Comment</button>-->
-                                                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                                                </div>
-                                            </form>
+                                            <!--                                            <form th:action="@{/rentCar/saveCarComments}" th:each="cars : ${cars}"-->
+                                            <!--                                                  method="post" class="p-5 bg-light">-->
+                                            <div class="form-group">
+                                                <label for="name">Name *</label>
+                                                <input type="hidden" th:value="${cars.id}" name="car_id"
+                                                       class="form-control" id="car_id">
+                                                <input type="text" name="name" class="form-control" id="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="text">Message</label>
+                                                <textarea name="text" id="text" cols="15" rows="10"
+                                                          class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn py-3 px-4 btn-primary" id="saveComment">Post
+                                                    Comment
+                                                </button>
+                                                <!--                                                    <input type="submit" value="Post Comment"-->
+                                                <!--                                                           class="btn py-3 px-4 btn-primary">-->
+                                            </div>
+                                            <!--                                            </form>-->
                                         </div>
 
 
@@ -227,8 +271,6 @@
     </section>
 
 
-
-
 <!--    <script>-->
 <!--        $("#saveComment").click(function () {-->
 <!--            let car_id = $('#car_id').val()-->
@@ -241,19 +283,23 @@
 <!--            data.name = name-->
 <!--            data.text = text-->
 
+<!--            let div=document.createElement("#list")-->
 
 <!--            console.log(data)-->
+<!--            $.ajax({-->
+<!--                url: 'http://localhost:8086/rentCar/saveCarComments',-->
+<!--                type: 'POST',-->
+<!--                data: JSON.stringify(data),-->
+<!--                dataType: 'json',-->
+<!--                contentType: "application/json",-->
+<!--                success: function (res) {-->
+<!--                 div.append("#list")-->
+<!--                               }-->
+<!--            })-->
 
-<!--            //     $,-->
-<!--            //         type: 'POST',-->
-<!--            //         data: JSON.stringify(data),-->
-<!--            //         dataType: 'json',-->
-<!--            //         contentType: "application/json",zzzzzzzzzzzzzzzzzzzzzzzz-->
-<!--            //       -->
-<!--            //        -->
 
-<!--        )}-->
-    </script>
+<!--        })-->
+<!--    </script>-->
 </div>
 </body>
 </html>

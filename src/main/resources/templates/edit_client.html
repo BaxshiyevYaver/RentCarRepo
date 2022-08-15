@@ -19,49 +19,56 @@
         </div>
     </section>
 
-
     <section>
         <br>
         <div class="container">
             <div class="col-md-8 block-9 mb-md-5">
-                <form th:action="@{/rentCar/editSaveClient/{id}(id=${client.id})}" th:object="${client}" enctype="multipart/form-data" method="post"
+                <form th:action="@{/rentCar/editSaveClient/{id}(id=${client.id})}" th:object="${client}"
+                      enctype="multipart/form-data" method="post"
                       class="bg-light p-5 contact-form">
                     <div class="form-group">
-<!--                        <input type="hidden" th:value="${client.id}" class="form-control" id="id" name="id">-->
-                        <h5>Client Name:</h5>
-                        <input type="text" th:value="${client.name}" name="name" id="name"
+                        <label for="name"><h5>Client Name:</h5></label>
+                        <input type="text" th:value="${client.name}" th:name="name" id="name"
                                class="form-control"
-                               placeholder="Client Name">
+                               placeholder="Enter Name"
+                               oninvalid="this.setCustomValidity('Enter Client Name Here')"
+                               oninput="this.setCustomValidity('')" required>
                     </div>
                     <div class="form-group">
-                        <h5>Client Work:</h5>
+                        <label for="work"><h5>Client Work:</h5></label>
                         <input type="text" th:value="${client.work}" name="work" id="work"
                                class="form-control"
                                placeholder="Client Work">
                     </div>
                     <div class="form-group">
-                        <h5>Client Service:</h5>
+                        <label for="about"><h5>Client Service:</h5></label>
                         <textarea type="text" th:text="${client.about}" name="about" id="about" class="form-control"
                                   cols="30" rows="7" placeholder="About Client"></textarea>
                     </div>
                     <div class="form-group">
-<!--                        <img  th:src="@{'data:image/jpeg;base64,'+${client.image}}"  alt="" height="10px" width="10px">-->
-                        <h5>Client Photo:</h5>
-
-                        <input type="file"  th:name="image1" accept="image/png, image/jpeg" class="form-control" id="image1" >
-
-
-
+                        <label for="image1"><h4>Edit Image:</h4></label>
+                        <label for="image1" class="custom-file-upload" th:text="${client.image_name}">
+                            <i class="fa fa-cloud-upload"></i>
+                        </label>
+                        <input id="image1" name='image1' type="file" style="display:none;">
                     </div>
                     <div class="form-group">
                         <input type="submit" name="submit" value="Edit Client"
                                class="btn btn-primary py-3 px-5">
+                        <input type="reset" value="Change cancel" class="btn btn-danger py-3 px-5">
                     </div>
                 </form>
             </div>
         </div>
     </section>
 
+    <script>
+        $('#image1').change(function () {
+            var i = $(this).prev('label').clone();
+            var file = $('#image1')[0].files[0].name;
+            $(this).prev('label').text(file);
+        });
+    </script>
 
 </div>
 </body>

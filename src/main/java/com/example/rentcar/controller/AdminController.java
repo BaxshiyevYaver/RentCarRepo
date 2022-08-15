@@ -1,5 +1,6 @@
 package com.example.rentcar.controller;
 
+import com.example.rentcar.dao.entity.CarCommentsEntity;
 import com.example.rentcar.dao.entity.RentCarEntity;
 import com.example.rentcar.model.*;
 import com.example.rentcar.service.*;
@@ -23,6 +24,7 @@ public class AdminController {
     ClientsService clientsService;
     CarsService carsService;
     RankingService rankingService;
+    CarCommentsService carCommentsService;
 
 
     @GetMapping("/admin")
@@ -53,6 +55,10 @@ public class AdminController {
 
         List<RentCarEntity> rentCarEntityList = carsService.getRentCarList();
         model.addAttribute("rentCar", rentCarEntityList);
+
+        List<CarCommentsDto> carCommentsDtoList = carCommentsService.getCarCommentsList();
+        model.addAttribute("carComments", carCommentsDtoList);
+
         return "admin";
     }
 

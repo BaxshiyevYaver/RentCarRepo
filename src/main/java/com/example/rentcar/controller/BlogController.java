@@ -84,34 +84,25 @@ public class BlogController {
     }
 
     @PostMapping("/saveBlog")
-    public String saveBlog(@RequestParam("blogImage") MultipartFile multipartFile,
-                           @RequestParam("title") String title,
-                           @RequestParam("article") String article,
-                           @RequestParam("text") String text,
-                           @RequestParam("author") String author,
-                           @RequestParam(value = "id", required = false) Integer id) throws IOException {
-
-
-        blogService.saveBlog(multipartFile, title, article, text, author, id);
+    public String saveBlog(@RequestParam("blog_image") MultipartFile blog_image,
+                           BlogDto blogDto) throws IOException {
+        blogService.saveBlog(blog_image, blogDto);
         return "redirect:/admin/admin/";
     }
 
     @PostMapping("/editSaveBlog/{id}")
     public String editSaveBlog(@PathVariable Integer id,
-                               @RequestParam("image1") MultipartFile multipartFile,
-                               @RequestParam("title") String title,
-                               @RequestParam("article") String article,
-                               @RequestParam("text") String text,
-                               @RequestParam("author") String author
+                               @RequestParam("blog_image") MultipartFile blog_image,
+                               BlogDto blogDto
     ) throws IOException {
-        blogService.editSaveBlog(id, multipartFile, title, article, text, author);
+        blogService.editSaveBlog(id, blog_image, blogDto);
         return "redirect:/admin/admin/";
     }
 
     @GetMapping("/deleteBlog/{blogId}")
     public String deleteBlog(@PathVariable("blogId") Integer blogId) {
 
-        blogCommentsService.deleteBlogComments();
+   //     blogCommentsService.deleteBlogComments(blogId);
         blogService.deleteBlog(blogId);
 
         return "redirect:/admin/admin/";

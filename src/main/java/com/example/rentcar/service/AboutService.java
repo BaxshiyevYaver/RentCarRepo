@@ -48,20 +48,19 @@ public class AboutService {
 
     @Transactional
     public void saveAbout(AboutDto aboutDto) {
-
         aboutRepository.save(AboutMapper.INSTANCE.mapAboutDtoToEntity(aboutDto));
-
     }
 
     @Transactional
-    public void editSaveAbout(Integer id, MultipartFile multipartFile, AboutDto aboutDto) throws IOException {
+    public void editSaveAbout(Integer id, MultipartFile about_image, AboutDto aboutDto) throws IOException {
 
         var aboutEntity = aboutRepository.findById(id).get();
-        //var aboutDto = CarsMapper.INSTANCE.mapCarsMapperEntityToDto(carEntity);
+        var aboutDtoOld = AboutMapper.INSTANCE.mapAboutEntityToDto(aboutEntity);
 
-
-        if (!multipartFile.isEmpty()) {
-            aboutDto.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        if (about_image.isEmpty()) {
+            aboutDto.setImage(aboutDtoOld.getImage());
+        } else {
+            aboutDto.setImage(Base64.getEncoder().encodeToString(about_image.getBytes()));
         }
         aboutRepository.save(AboutMapper.INSTANCE.mapAboutDtoToEntity(aboutDto));
     }

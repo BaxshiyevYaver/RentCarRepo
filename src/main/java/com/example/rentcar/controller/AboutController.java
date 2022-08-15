@@ -48,6 +48,13 @@ public class AboutController {
         return "about";
     }
 
+    @GetMapping("/addClient")
+    public String addClient(Model model) {
+
+        List<ClientsDto> clientsDtoList = clientsService.getClientsList();
+        model.addAttribute("clients", clientsDtoList);
+        return "addClient";
+    }
 
     @GetMapping("/editAbout/{aboutId}")
     public String editAbout(
@@ -90,31 +97,27 @@ public class AboutController {
     }
 
     @PostMapping("/saveClient")
-    public String saveClient(@RequestParam("image") MultipartFile multipartFile,
-                             @RequestParam("name") String name,
-                             @RequestParam("about") String about,
-                             @RequestParam("work") String work,
-                             @RequestParam(value = "id", required = false) Integer id) throws IOException {
-        clientsService.saveClient(multipartFile, name, about, work, id);
+    public String saveClient(@RequestParam("client_image") MultipartFile image,
+                             ClientsDto clientsDto) throws IOException {
+        clientsService.saveClient(clientsDto,image);
         return "redirect:/admin/admin/";
     }
 
     @PostMapping("/editSaveClient/{id}")
     public String editSaveClient(@PathVariable Integer id,
                                  @RequestParam("image1") MultipartFile multipartFile,
-                                 @RequestParam("name") String name,
-                                 @RequestParam("about") String about,
-                                 @RequestParam("work") String work
-    ) throws IOException{
-        clientsService.editSaveClient(id, multipartFile, name, about, work);
+                                 ClientsDto clientsDto
+    ) throws IOException {
+        clientsService.editSaveClient(id, multipartFile, clientsDto);
         return "redirect:/admin/admin/";
     }
+
     @PostMapping("/editSaveAbout/{id}")
     public String editSaveCar(@PathVariable Integer id,
-                              @RequestParam("image2") MultipartFile multipartFile,
+                              @RequestParam("about_image") MultipartFile about_image,
                               AboutDto aboutDto
     ) throws IOException {
-        aboutService.editSaveAbout(id, multipartFile, aboutDto);
+        aboutService.editSaveAbout(id, about_image, aboutDto);
         return "redirect:/admin/admin/";
     }
 

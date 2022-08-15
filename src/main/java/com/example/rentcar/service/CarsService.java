@@ -2,10 +2,10 @@ package com.example.rentcar.service;
 
 import com.example.rentcar.dao.entity.CarsEntity;
 import com.example.rentcar.dao.entity.RentCarEntity;
+import com.example.rentcar.dao.repository.CarCommentsRepository;
 import com.example.rentcar.dao.repository.CarsRepository;
 import com.example.rentcar.dao.repository.RentCarRepository;
 import com.example.rentcar.mapper.CarsMapper;
-import com.example.rentcar.mapper.ClientsMapper;
 import com.example.rentcar.model.CarsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +24,9 @@ public class CarsService {
     CarsRepository carsRepository;
     @Autowired
     RentCarRepository rentCarRepository;
+    @Autowired
+    CarCommentsRepository carCommentsRepository;
+
 
     public CarsService(CarsRepository carsRepository) {
         this.carsRepository = carsRepository;
@@ -48,8 +51,9 @@ public class CarsService {
     }
 
 
-
     public void deleteCar(Integer id) {
+        rentCarRepository.deleteAll(rentCarRepository.checkCar(id));
+        carCommentsRepository.deleteAll(carCommentsRepository.checkComments(id));
         carsRepository.deleteById(id);
     }
 
@@ -66,24 +70,20 @@ public class CarsService {
 
     @Transactional
     public void saveCar(CarsDto carsDto, MultipartFile car_image) throws IOException {
-//        CarsDto car=new CarsDto();
-//        car.setAirconditions();
-//        car.setAudio_input();
-//        car.setBluetooth();
-//        car.setChild_seat();
         carsDto.setCar_image(Base64.getEncoder().encodeToString(car_image.getBytes()));
         carsRepository.save(CarsMapper.INSTANCE.mapCarsMapperDtoToEntity(carsDto));
     }
 
     @Transactional
-    public void editSaveCar(Integer id, MultipartFile multipartFile, CarsDto carsDto) throws IOException {
+    public void editSaveCar(Integer id, MultipartFile car_image, CarsDto carsDto) throws IOException {
 
         var carEntity = carsRepository.findById(id).get();
-        var carDto = CarsMapper.INSTANCE.mapCarsMapperEntityToDto(carEntity);
+        var carDtoOld = CarsMapper.INSTANCE.mapCarsMapperEntityToDto(carEntity);
 
-
-        if (!multipartFile.isEmpty()) {
-            carsDto.setCar_image(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        if (car_image.isEmpty()) {
+            carsDto.setCar_image(carDtoOld.getCar_image());
+        } else {
+            carsDto.setCar_image(Base64.getEncoder().encodeToString(car_image.getBytes()));
         }
         carsRepository.save(CarsMapper.INSTANCE.mapCarsMapperDtoToEntity(carsDto));
     }

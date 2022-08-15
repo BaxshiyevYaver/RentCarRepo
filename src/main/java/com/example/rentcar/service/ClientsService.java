@@ -3,7 +3,9 @@ package com.example.rentcar.service;
 import com.example.rentcar.dao.entity.ClientsEntity;
 import com.example.rentcar.dao.repository.ClientsRepository;
 //import com.example.rentcar.mapper.CarsMapper;
+import com.example.rentcar.mapper.CarsMapper;
 import com.example.rentcar.mapper.ClientsMapper;
+import com.example.rentcar.model.CarsDto;
 import com.example.rentcar.model.ClientsDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +35,13 @@ public class ClientsService {
 
     }
 
+//    public String imageName(ClientsEntity clientsEntity) {
+//        clientsEntity.getImage().
+//        return
+//    }
+
     public long totalClients() {
+
         return clientsRepository.count();
     }
 
@@ -49,36 +57,29 @@ public class ClientsService {
     }
 
     @Transactional
-    public void saveClient(MultipartFile multipartFile, String name, String about, String work, Integer id) throws IOException {
+    public void saveClient(ClientsDto clientsDto,MultipartFile image) throws IOException {
 
-        ClientsDto clientsDto = new ClientsDto();
-        clientsDto.setId(id);
-        clientsDto.setName(name);
-        clientsDto.setAbout(about);
-        clientsDto.setWork(work);
-        clientsDto.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        clientsDto.setImage(Base64.getEncoder().encodeToString(image.getBytes()));
+        clientsDto.setImage_name(image.getOriginalFilename());
+
         clientsRepository.save(ClientsMapper.INSTANCE.mapClientsMapperDtoToEntity(clientsDto));
     }
 
     @Transactional
-    public void editSaveClient(Integer id, MultipartFile multipartFile, String name, String about, String work) throws IOException {
+    public void editSaveClient(Integer id, MultipartFile multipartFile,ClientsDto clientsDto) throws IOException {
 
-        var clientsEntity=clientsRepository.findById(id).get();
-        var clientsDto= ClientsMapper.INSTANCE.mapClientsMapperEntityToDto(clientsEntity);
+        var clientsEntity = clientsRepository.findById(id).get();
+        var clientsDto1 = ClientsMapper.INSTANCE.mapClientsMapperEntityToDto(clientsEntity);
 
-
-        clientsDto.setName(name);
-        clientsDto.setAbout(about);
-        clientsDto.setWork(work);
+        clientsDto1.setName(clientsDto.getName());
+        clientsDto1.setAbout(clientsDto.getAbout());
+        clientsDto1.setWork(clientsDto.getWork());
         if (!multipartFile.isEmpty()) {
-            clientsDto.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+            clientsDto1.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+            clientsDto1.setImage_name(multipartFile.getOriginalFilename());
         }
-        clientsRepository.save(ClientsMapper.INSTANCE.mapClientsMapperDtoToEntity(clientsDto));
+        clientsRepository.save(ClientsMapper.INSTANCE.mapClientsMapperDtoToEntity(clientsDto1));
     }
 
 
 }
-//        ClientsDto clien1 = new ClientsDto(cl);
-
-//        var clientExsists=clientsRepository.existsById(id);
-//        if (!clientExsists)new RuntimeException("Sehv var");

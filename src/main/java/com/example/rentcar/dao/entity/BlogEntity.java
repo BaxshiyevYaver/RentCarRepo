@@ -16,7 +16,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class BlogEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +40,8 @@ public class BlogEntity {
     @Column(name = "image")
     private String image;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL
+            ,fetch = FetchType.LAZY)
     private Set<BlogCommentsEntity> orderDetail = new HashSet();
 
 //(fetch = FetchType.EAGER)

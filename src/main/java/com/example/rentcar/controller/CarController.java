@@ -49,6 +49,15 @@ public class CarController {
         return "car-single";
     }
 
+    @PostMapping("/saveCarComments")
+    public String saveCarComments(@RequestBody CarCommentsDto carCommentsDto) {
+
+        carCommentsService.saveCarComments(carCommentsDto);
+        return "redirect:/rentCar/car-single/" + carCommentsDto.getCar_id();
+
+    }
+
+
     @GetMapping("/addCar")
     public String redirectCarAdd(Model model) {
         List<CarsDto> carsDtoList = carsService.getCarsList();
@@ -57,13 +66,6 @@ public class CarController {
         return "addCar";
     }
 
-    @PostMapping("/saveCarComments")
-    public String saveCarComments(CarCommentsDto carCommentsDto) {
-
-        carCommentsService.saveCarComments(carCommentsDto);
-        return "redirect:/rentCar/car";
-
-    }
 
     @GetMapping("/deleteCar/{carId}")
     public String deleteCar(@PathVariable("carId") Integer carId, Model model) {
@@ -82,7 +84,8 @@ public class CarController {
     }
 
     @PostMapping("/saveCar")
-    public String saveCar(@RequestParam("image1") MultipartFile car_image, CarsDto carsDto
+    public String saveCar(@RequestParam("image") MultipartFile car_image,
+                          CarsDto carsDto
     ) throws IOException {
         carsService.saveCar(carsDto, car_image);
         return "redirect:/admin/admin/";
@@ -90,10 +93,10 @@ public class CarController {
 
     @PostMapping("/editSaveCar/{id}")
     public String editSaveCar(@PathVariable Integer id,
-                              @RequestParam("image") MultipartFile multipartFile,
+                              @RequestParam("image") MultipartFile car_image,
                               CarsDto carsDto
     ) throws IOException {
-        carsService.editSaveCar(id, multipartFile, carsDto);
+        carsService.editSaveCar(id, car_image, carsDto);
         return "redirect:/admin/admin/";
     }
 
@@ -103,13 +106,16 @@ public class CarController {
                                Model model) {
         CarsDto carsDto = carsService.getCar(carId);
         model.addAttribute("car", carsDto);
+
+        List<RentCarEntity> rentCarEntityList = carsService.getRentCarList();
+        model.addAttribute("rentCar", rentCarEntityList);
         return "rentCar";
     }
 
-    @PostMapping("/checkRentCar")
-    public String checkRentCar(@RequestBody RentCarEntity rentCarEntity
-    ) {
-        var res = carsService.checkRentCar(rentCarEntity);
-        return "{\"test\":\"data\"}";
-    }
+//    @PostMapping("/checkRentCar")
+//    public String checkRentCar(@RequestBody RentCarEntity rentCarEntity
+//    ) {
+//        var res = carsService.checkRentCar(rentCarEntity);
+//        return "{\"test\":\"data\"}";
+//    }
 }

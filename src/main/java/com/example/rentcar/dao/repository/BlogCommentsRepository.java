@@ -14,13 +14,6 @@ public interface BlogCommentsRepository extends JpaRepository<BlogCommentsEntity
     @Query("SELECT c FROM blog_comments c WHERE c.blogEntity.id = ?1")
     List<BlogCommentsEntity> findbyBlogID(Integer id);
 
-
-//    @Query("SELECT c FROM blog_comments c WHERE c.blogEntity.id = ?1")
-//    void deleteByBlogId(Integer id);
-
-//    @Override
-//    @Query("SELECT c FROM blog_comments c WHERE c.blogEntity.id = ?1")
-//    void deleteById(Integer id);
-//
-//
+//    @Query("SELECT c FROM blog_comments c WHERE c.blogEntity.id= ?1")
+//    List<BlogCommentsEntity> findbyBlog(Integer id);
 }

@@ -34,10 +34,10 @@ public class BlogCommentsService {
         return blogCommentsDtoList;
     }
 
-    public void deleteBlogComments() {
-        blogCommentsRepository.deleteAll();
-        int a=1;
-    }
+//    public void deleteBlogComments(Integer id) {
+//        blogCommentsRepository.deleteAll(blogCommentsRepository.findbyBlog(id));
+//
+//    }
 
     public void saveBlogComments(BlogCommentsDto blogCommentsDto) {
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd' AT 'HH:mm").format(Calendar.getInstance().getTime());

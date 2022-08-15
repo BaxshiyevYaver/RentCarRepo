@@ -33,8 +33,10 @@ public class BlogCommentsEntity {
     @Column(name = "date")
     private String date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="blog_id")
+    @ManyToOne(cascade = CascadeType.ALL
+            ,fetch = FetchType.LAZY)
+    @JoinColumn(name ="blog_id",
+    foreignKey = @ForeignKey(name = ""))
     private BlogEntity blogEntity;
 
 

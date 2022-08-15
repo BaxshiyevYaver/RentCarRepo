@@ -22,16 +22,20 @@
         </div>
     </section>
 
-
     <section class="ftco-section ftco-no-pt bg-light">
+        <a href="#list">
+            <button class="btn py-3 px-4 btn-primary">
+                List
+            </button>
+        </a>
         <div class="container" th:each="car : ${car}">
             <div class="row no-gutters">
                 <div class="col-md-12	featured-top">
 
-                        <div class="col-md-4 d-flex align-items-center">
-                            <div class="row no-gutters"><h1 th:text="${car.name}"></h1>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <div class="row no-gutters"><h1 th:text="${car.name}"></h1>
                             <form th:action="@{/rest/checkRentCar}" method="post"
-                                  class="request-form ftco-animate bg-primary">
+                                  class="request-form ftco-animate bg-primary" id="mesaj">
                                 <h2>Make your trip</h2>
                                 <div class="d-flex">
                                     <div class="form-group mr-2">
@@ -60,11 +64,35 @@
         </div>
     </section>
 
+
+    <section id="list">
+        <div class="container">
+            <h1 class="mb-3 bread">Contact Us Message</h1>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <td>Date From</td>
+<!--                    <td>Date To</td>-->
+                </tr>
+                </thead>
+                <tbody id="forAppend">
+                <tr th:each="rentCar : ${rentCar}">
+
+                    <td th:text="${rentCar.date_from}"></td>
+<!--                    <td th:text="${rentCar.date_to}"></td>-->
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
     <script>
         $("#saveRent").click(function () {
-            let car_id = $('#car_id').val()
-            let date_from = $('#date_from').val()
-            let date_to = $('#date_to').val()
+            let car_id = $('#car_id').val();
+            let date_from = $('#date_from').val();
+            let date_to = $('#date_to').val();
 
 
             let data = {}
@@ -72,6 +100,7 @@
             data.date_from = date_from
             data.date_to = date_to
 
+            // let yeniMesaj= document.getElementById("#mesaj")
 
             console.log(data)
 
@@ -82,10 +111,15 @@
                 dataType: 'json',
                 contentType: "application/json",
                 success: function (res) {
-                    alert(res.result)
-                    //window.location()
-                }
 
+                    alert(res.result)
+
+
+let htmlModel = `<tr><td>${date_from}</td></tr>`;
+
+
+                    $("#forAppend").append(htmlModel);
+                },
             });
 
             console.log('End')

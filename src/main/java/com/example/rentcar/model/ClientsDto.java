@@ -13,4 +13,5 @@ public class ClientsDto {
     private String work;
     private String about;
     private String image;
+    private String image_name;
 }

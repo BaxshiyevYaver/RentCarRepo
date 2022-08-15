@@ -3,7 +3,6 @@ package com.example.rentcar.service;
 import com.example.rentcar.dao.entity.BlogEntity;
 import com.example.rentcar.dao.repository.BlogCommentsRepository;
 import com.example.rentcar.dao.repository.BlogRepository;
-import com.example.rentcar.dao.repository.FileSystemRepository;
 import com.example.rentcar.mapper.BlogMapper;
 import com.example.rentcar.mapper.ClientsMapper;
 import com.example.rentcar.model.BlogDto;
@@ -49,18 +48,12 @@ public class BlogService {
     }
 
     @Transactional
-    public void saveBlog(MultipartFile multipartFile, String title, String article, String text, String author, Integer id) throws IOException {
-        BlogDto blogDto = new BlogDto();
+    public void saveBlog(MultipartFile blog_image, BlogDto blogDto) throws IOException {
 
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd' AT 'HH:mm").format(Calendar.getInstance().getTime());
-        blogDto.setId(id);
-        blogDto.setArticle(article);
-        blogDto.setAuthor(author);
         blogDto.setDate(timeStamp);
-        blogDto.setText(text);
-        blogDto.setTitle(title);
 
-        blogDto.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        blogDto.setImage(Base64.getEncoder().encodeToString(blog_image.getBytes()));
         blogRepository.save(BlogMapper.INSTANCE.mapBlogDtoToEntity(blogDto));
 
     }
@@ -71,19 +64,14 @@ public class BlogService {
     }
 
     @Transactional
-    public void editSaveBlog(Integer id, MultipartFile multipartFile, String title, String article, String text, String author) throws IOException {
+    public void editSaveBlog(Integer id, MultipartFile blog_image, BlogDto blogDto) throws IOException {
         var blogEntity = blogRepository.findById(id).get();
-        var blogDto = BlogMapper.INSTANCE.mapBlogEntityToDto(blogEntity);
+        var blogDtoOld = BlogMapper.INSTANCE.mapBlogEntityToDto(blogEntity);
 
-
-        blogDto.setTitle(title);
-        blogDto.setArticle(article);
-        blogDto.setText(text);
-        blogDto.setAuthor(author);
-        blogDto.setImage(blogEntity.getImage());
-
-        if (!multipartFile.isEmpty()) {
-            blogDto.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        if (blog_image.isEmpty()) {
+            blogDto.setImage(blogDtoOld.getImage());
+        } else {
+            blogDto.setImage(Base64.getEncoder().encodeToString(blog_image.getBytes()));
         }
         blogRepository.save(BlogMapper.INSTANCE.mapBlogDtoToEntity(blogDto));
     }
@@ -91,6 +79,3 @@ public class BlogService {
 
 }
 
-
-//    FileSystemRepository fileSys = new FileSystemRepository();
-//        fileSys.save(files.getBytes(),files.getOriginalFilename());
